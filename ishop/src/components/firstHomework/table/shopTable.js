@@ -1,56 +1,52 @@
+const e = React.createElement;
+const d = React.DOM;
+
 var ShopTable = React.createClass({
   displayName: 'ShopTable',
   propTypes: {
     name: React.PropTypes.string.isRequired,
     products: React.PropTypes.array.isRequired,
   },
-  render: function () {
-    const products = this.props.products;
-
-    function renderTableHeader() {
-      let header = Object.keys(products[0])
-      return header.map((key, index) => {
-        return React.createElement('th', {
-          key: index
-        }, key.toUpperCase())
-      })
-    }
-
-    function renderTableData() {
-      return products.map((product) => {
-        const {
-          id,
-          name,
-          price,
-          photo,
-          count,
-          colors
-        } = product;
-        return React.createElement('tr', {
-            key: id
-          },
-          React.DOM.td({}, id),
-          React.DOM.td({}, name),
-          React.DOM.td({}, `${price}$`),
-          React.DOM.td({}, React.createElement('img', {
-            src: photo,
-            className: 'imgIphone'
-          })),
-          React.DOM.td({}, count),
-          React.DOM.td({}, colors.join(', ')),
-        )
-      })
+  getInitialState: function () {
+    return {
+      products: this.props.products,
+      selectedIds: []
     };
-    const header = React.DOM.thead({}, React.DOM.tr({}, renderTableHeader()));
-    const body = React.DOM.tbody({}, renderTableData());
-    const table = React.DOM.table({
+  },
+  selectRow: function(id){
+    const index = this.state.products.findIndex(p => p.id === id);
+    const indexId = this.state.selectedIds.findIndex(i => i === id);
+    if(index !== -1){
+      if(indexId === -1){
+        this.state.selectedIds.push(id);
+      } else{
+        this.state.selectedIds.splice(indexId, 1);
+      }
+    }
+  },
+  deleteRow: function (id) {
+    const arrayCopy = this.state.products.filter((row) => row.id !== id);
+    const arrayIdsCopy = this.state.selectedIds.filter(i => i !== id);
+    this.setState({products: arrayCopy, selectedIds: arrayIdsCopy});
+  },
+  render: function () {
+    const header = e(HeaderTable, {
+      headers: Object.keys(this.props.products[0])
+    });
+    const body = d.tbody(null, this.state.products.map((p) => e(RowTable, {
+      product: p,
+      selectedIds: this.state.selectedIds,
+      cbDeleteRow: this.deleteRow,
+      cbSelectRow: this.selectRow
+    })));
+    const table = d.table({
         className: 'products'
       },
       header,
       body
     );
-    return React.DOM.div({},
-      React.DOM.h1({
+    return d.div(null,
+      d.h1({
         className: 'title'
       }, this.props.name),
       table
