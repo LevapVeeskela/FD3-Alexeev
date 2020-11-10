@@ -26,7 +26,6 @@ var RowTable = React.createClass({
         let tr_class = this.props.selectedIds.findIndex(i => i === this.props.product.id) !== -1 ? "selectRow" : "";
 
         return React.createElement('tr', {
-                key: String(this.props.product.id),
                 onClick: this.selectRow,
                 className: tr_class
             },

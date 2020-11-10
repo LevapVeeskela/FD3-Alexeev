@@ -34,6 +34,7 @@ var ShopTable = React.createClass({
       headers: Object.keys(this.props.products[0])
     });
     const body = d.tbody(null, this.state.products.map((p) => e(RowTable, {
+      key: p.id,
       product: p,
       selectedIds: this.state.selectedIds,
       cbDeleteRow: this.deleteRow,
