@@ -1,5 +1,5 @@
-var FirstHomework = React.createClass({
-  displayName: 'FirstHomework',
+var Container = React.createClass({
+  displayName: 'Container',
   render: function () {
     var tables = DataShops.map(m =>
       React.createElement(ShopTable, {
