@@ -15,3 +15,9 @@ const ConfirmIcons = Object.freeze({
     Warning: 'fa fa-bullhorn fa-3x',
     Delete: 'fa fa-trash fa-3x'
 });
+
+const ModeSelectionTable = Object.freeze({
+    Single: 1 << 0,
+    Multi:  1 << 1,
+});
+

@@ -14,7 +14,7 @@ const Confirm = React.createClass({
     render: function () {
         return d.div({
                 className: `${SelectConfirmStyle(this.props.type)} confirmBox`,
-                "role": "alert"
+                'role': 'alert'
             },
             d.div({
                 className: 'row'
@@ -32,12 +32,12 @@ const Confirm = React.createClass({
             d.button({
                 value: 'Отмена',
                 className: 'close',
-                "data-dismiss": "alert",
-                "aria-label": "Close",
+                'data-dismiss': 'alert',
+                'aria-label': 'Close',
                 onClick: this.cancelConfirm
             }, d.span({
-                "aria-hidden": "true"
-            }, "\u00D7"))
+                'aria-hidden': 'true'
+            }, '\u00D7'))
         )
     }
 })

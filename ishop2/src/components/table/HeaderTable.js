@@ -1,9 +1,8 @@
 const HeaderTable = React.createClass({
     displayName: 'HeaderTable',
     render: function () {
-        const headers = this.props.headers;
+        const headers = this.props.headers.concat(this.props.additionalHedaers);
         function renderTableHeader() {
-            headers.push('Control');
             return headers.map((key, index) => {
               return e('th', {
                 key: index

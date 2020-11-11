@@ -10,7 +10,7 @@ img{
 
 .products {
     text-align: center;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     border: 3px solid #ddd;
     width: 100%;
@@ -58,4 +58,8 @@ img{
 
 .selectRow{
     background: #689dff !important;
+}
+
+.float-right{
+    float: right;
 }

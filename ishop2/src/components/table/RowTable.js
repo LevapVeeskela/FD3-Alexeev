@@ -25,8 +25,18 @@ const RowTable = React.createClass({
         $event.stopPropagation();
         this.props.cbDeleteRow(this.props.product.id)
     },
+    changeStyle: function () {
+        switch (this.props.mode) {
+            case ModeSelectionTable.Single:
+                return  this.props.product.id && this.props.selectedLastId && this.props.product.id === this.props.selectedLastId ? 'selectRow' : '';
+            case ModeSelectionTable.Multi:
+                return this.props.selectedIds && this.props.selectedIds.length > 0 && this.props.selectedIds.findIndex(i => i === this.props.product.id) !== -1 ? 'selectRow' : '';
+            default:
+                return '';
+        }
+    },
     render: function () {
-        let tr_class = this.props.selectedIds.findIndex(i => i === this.props.product.id) !== -1 ? "selectRow" : "";
+        let tr_class = this.changeStyle();
 
         return e('tr', {
                 onClick: this.selectRow,

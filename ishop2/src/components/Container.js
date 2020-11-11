@@ -5,7 +5,8 @@ const Container = React.createClass({
       React.createElement(ShopTable, {
         key: m.id,
         name: m.name,
-        products: m.products
+        products: m.products,
+        mode: ModeSelectionTable.Single
       })
     );
 
