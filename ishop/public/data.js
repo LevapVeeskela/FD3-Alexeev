@@ -1,4 +1,4 @@
- var DataShops = [{
+ const DataShops = [{
      "id": 1,
      "name": "Apple-Store",
      "products": [{

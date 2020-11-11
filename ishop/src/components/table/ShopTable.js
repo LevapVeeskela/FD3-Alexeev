@@ -1,4 +1,4 @@
-var ShopTable = React.createClass({
+const ShopTable = React.createClass({
   displayName: 'ShopTable',
   propTypes: {
     name: React.PropTypes.string.isRequired,

@@ -1,7 +1,7 @@
-var Container = React.createClass({
+const Container = React.createClass({
   displayName: 'Container',
   render: function () {
-    var tables = DataShops.map(m =>
+    const tables = DataShops.map(m =>
       React.createElement(ShopTable, {
         key: m.id,
         name: m.name,

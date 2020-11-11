@@ -1,4 +1,4 @@
-var HeaderTable = React.createClass({
+const HeaderTable = React.createClass({
     displayName: 'HeaderTable',
     render: function () {
         const headers = this.props.headers;

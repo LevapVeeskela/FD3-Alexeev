@@ -1,4 +1,4 @@
-var RowTable = React.createClass({
+const RowTable = React.createClass({
     displayName: 'RowTable',
     propTypes: {
         id: React.PropTypes.number,

@@ -1,4 +1,4 @@
-var Confirm = React.createClass({
+const Confirm = React.createClass({
     displayName: 'Confirm',
     getDefaultProps: function () {
         return {
@@ -12,30 +12,30 @@ var Confirm = React.createClass({
         this.props.csCancelConfirm();
     },
     render: function () {
-        return React.DOM.div({
+        return d.div({
                 className: `${SelectConfirmStyle(this.props.type)} confirmBox`,
                 "role": "alert"
             },
-            React.DOM.div({
+            d.div({
                 className: 'row'
-            }, React.DOM.i({
+            }, d.i({
                 className: `${SelectConfirmIcon(this.props.type)} col-2`
-            }), React.DOM.h5({
+            }), d.h5({
                 className: 'textConfirm  col-10'
             }, this.props.text)),
-            React.DOM.button({
+            d.button({
                 value: this.props.textButton,
                 type: 'button',
                 className: 'col-12 btn btn-outline-success',
                 onClick: this.actionConfirm
-            }, React.DOM.span(null, this.props.textButton)),
-            React.DOM.button({
+            }, d.span(null, this.props.textButton)),
+            d.button({
                 value: 'Отмена',
                 className: 'close',
                 "data-dismiss": "alert",
                 "aria-label": "Close",
                 onClick: this.cancelConfirm
-            }, React.DOM.span({
+            }, d.span({
                 "aria-hidden": "true"
             }, "\u00D7"))
         )

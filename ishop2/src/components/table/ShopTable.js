@@ -1,8 +1,4 @@
-const e = React.createElement;
-const d = React.DOM;
-const domConfirm = document.getElementById('confirm');
-
-var ShopTable = React.createClass({
+const ShopTable = React.createClass({
   displayName: 'ShopTable',
   propTypes: {
     name: React.PropTypes.string.isRequired,
@@ -26,7 +22,7 @@ var ShopTable = React.createClass({
     }
   },
   deleteRow: function (id) {
-    
+
     ReactDOM.render(
       React.createElement(Confirm, {
         key: id,

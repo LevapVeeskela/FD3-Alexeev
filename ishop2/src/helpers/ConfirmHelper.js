@@ -1,4 +1,4 @@
-var SelectConfirmStyle = function (type) {
+const SelectConfirmStyle = function (type) {
     switch (type) {
         case ConfirmTypes.Warning:
             return ConfirmClassesName.Warning;
@@ -9,7 +9,7 @@ var SelectConfirmStyle = function (type) {
     }
 }
 
-var SelectConfirmIcon = function (type) {
+const SelectConfirmIcon = function (type) {
     switch (type) {
         case ConfirmTypes.Warning:
             return ConfirmIcons.Warning;
