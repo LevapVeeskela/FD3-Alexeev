@@ -9,6 +9,6 @@ const Container = React.createClass({
       })
     );
 
-    return React.DOM.div(null, tables)
+    return d.div(null, tables)
   },
 });

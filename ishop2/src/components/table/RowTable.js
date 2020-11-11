@@ -8,16 +8,18 @@ const RowTable = React.createClass({
         count: React.PropTypes.number,
         colors: React.PropTypes.array,
         cbDeleteRow: React.PropTypes.func.isRequired,
-        cbSelectRow:  React.PropTypes.func.isRequired,
-    },  
+        cbSelectRow: React.PropTypes.func.isRequired,
+    },
     getInitialState: function () {
         return {
-          isSelect: false,
+            isSelect: false,
         };
-      },
-    selectRow: function() {
+    },
+    selectRow: function () {
         this.props.cbSelectRow(this.props.product.id)
-        this.setState({isSelect: !this.state.isSelect})
+        this.setState({
+            isSelect: !this.state.isSelect
+        })
     },
     deleteRow: function () {
         this.props.cbDeleteRow(this.props.product.id)
@@ -25,22 +27,22 @@ const RowTable = React.createClass({
     render: function () {
         let tr_class = this.props.selectedIds.findIndex(i => i === this.props.product.id) !== -1 ? "selectRow" : "";
 
-        return React.createElement('tr', {
+        return e('tr', {
                 onClick: this.selectRow,
                 className: tr_class
             },
-            React.DOM.td(null, this.props.product.id),
-            React.DOM.td(null, this.props.product.name),
-            React.DOM.td(null, `${this.props.product.price}$`),
-            React.DOM.td(null, React.createElement('img', {
+            d.td(null, this.props.product.id),
+            d.td(null, this.props.product.name),
+            d.td(null, `${this.props.product.price}$`),
+            d.td(null, e('img', {
                 src: this.props.product.photo,
                 className: 'imgIphone'
             })),
-            React.DOM.td(null, this.props.product.count),
-            React.DOM.td(null, this.props.product.colors.join(', ')),
-            React.DOM.td(null, React.DOM.a({
+            d.td(null, this.props.product.count),
+            d.td(null, this.props.product.colors.join(', ')),
+            d.td(null, d.a({
                 onClick: this.deleteRow
-            }, React.DOM.i({
+            }, d.i({
                 className: 'fab remove fa fa-trash fa-3x',
                 title: 'Удалить товар из списка'
             }))),

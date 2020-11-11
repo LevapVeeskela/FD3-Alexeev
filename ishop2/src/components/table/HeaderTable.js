@@ -5,11 +5,11 @@ const HeaderTable = React.createClass({
         function renderTableHeader() {
             headers.push('Control');
             return headers.map((key, index) => {
-              return React.createElement('th', {
+              return e('th', {
                 key: index
               }, key.toUpperCase())
             })
           }
-      return React.DOM.thead(null, React.DOM.tr(null, renderTableHeader()));
+      return d.thead(null, d.tr(null, renderTableHeader()));
     },
   });

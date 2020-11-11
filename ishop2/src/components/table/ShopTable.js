@@ -22,9 +22,8 @@ const ShopTable = React.createClass({
     }
   },
   deleteRow: function (id) {
-
     ReactDOM.render(
-      React.createElement(Confirm, {
+      e(Confirm, {
         key: id,
         item: id,
         type: ConfirmTypes.Delete,
@@ -43,10 +42,10 @@ const ShopTable = React.createClass({
       products: arrayCopy,
       selectedIds: arrayIdsCopy
     });
-    ReactDOM.unmountComponentAtNode(domConfirm); 
+    ReactDOM.unmountComponentAtNode(domConfirm);
   },
   cancelConfirm: function () {
-    ReactDOM.unmountComponentAtNode(domConfirm); 
+    ReactDOM.unmountComponentAtNode(domConfirm);
   },
   render: function () {
     const header = e(HeaderTable, {
