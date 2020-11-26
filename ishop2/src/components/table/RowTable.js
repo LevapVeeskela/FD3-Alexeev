@@ -7,8 +7,8 @@ const RowTable = React.createClass({
         photo: React.PropTypes.string,
         count: React.PropTypes.number,
         colors: React.PropTypes.array,
-        cbDeleteRow: React.PropTypes.func.isRequired,
-        cbSelectRow: React.PropTypes.func.isRequired,
+        cbDeleteRow: React.PropTypes.func,
+        cbSelectRow: React.PropTypes.func,
     },
     getInitialState: function () {
         return {
