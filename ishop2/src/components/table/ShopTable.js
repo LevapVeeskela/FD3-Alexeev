@@ -101,19 +101,18 @@ const ShopTable = React.createClass({
       d.h1({
         className: 'title'
       }, this.props.name, d.div({
-          className: 'btn-group float-right',
-          'role': 'group',
-        }, d.div(null, d.button({
-            onClick: this.changedModeSingle,
-            className: 'btn btn-info',
-            title: 'Получить возможность выбирать только один товар'
-          }, d.span(null, 'Одиночный выбор')),
-          d.button({
-            onClick: this.changedModeMulti,
-            className: 'btn btn-info',
-            title: 'Получить возможность выбирать несколько товаров'
-          }, d.span(null, 'Мульти выбор')))
-      )),
+        className: 'btn-group float-right',
+        'role': 'group',
+      }, d.div(null, d.button({
+          onClick: this.changedModeSingle,
+          className: 'btn btn-info',
+          title: 'Получить возможность выбирать только один товар'
+        }, d.span(null, 'Одиночный выбор')),
+        d.button({
+          onClick: this.changedModeMulti,
+          className: 'btn btn-info',
+          title: 'Получить возможность выбирать несколько товаров'
+        }, d.span(null, 'Мульти выбор'))))),
       table,
       this.state.isConfirm ? confirm : null
     );
