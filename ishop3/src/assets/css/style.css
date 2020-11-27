@@ -1,0 +1,65 @@
+img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.title {
+    text-align: center;
+    font-family: arial, sans-serif;
+}
+
+.products {
+    text-align: center;
+    font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border: 3px solid #ddd;
+    width: 100%;
+}
+
+.products td,
+.products th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.products tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.products tr:hover {
+    background-color: rgb(149, 255, 232);
+}
+
+.products th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+.imgIphone{
+    height: 100px;
+}
+
+.fab{
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.fab.remove{
+    background-color: red;
+    box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+}
+
+.fab.remove:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.selectRow{
+    background: #689dff !important;
+}
+
+.float-right{
+    float: right;
+}
