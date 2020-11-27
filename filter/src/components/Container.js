@@ -15,7 +15,7 @@ const Container = React.createClass({
     })
   },
   sort: function () {
-    if(!this.state.isSort){
+    if (!this.state.isSort) {
       this.setState({
         dataRows: this.state.dataRows.sort(),
         isSort: !this.state.isSort
@@ -28,14 +28,14 @@ const Container = React.createClass({
     })
   },
   search: function (EO) {
-    if(EO.target.value){
+    if (EO.target.value) {
       this.setState({
         dataRows: this.state.dataRows.filter(row => row.includes(EO.target.value)),
         sought: EO.target.value
       })
       return;
-    } 
-    
+    }
+
     this.setState({
       dataRows: [...Data],
       sought: ''
