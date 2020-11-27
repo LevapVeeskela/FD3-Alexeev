@@ -14,7 +14,9 @@ const ShopTable = React.createClass({
       products: this.props.products,
       selectedIds: [],
       selectedLastId: null,
-      mode: this.props.mode
+      mode: this.props.mode,
+      isConfirm: false,
+      deleteRowId: null
     };
   },
   selectRow: function (id) {
@@ -37,30 +39,24 @@ const ShopTable = React.createClass({
     }
   },
   deleteRow: function (id) {
-    ReactDOM.render(
-      e(Confirm, {
-        key: id,
-        item: id,
-        type: ConfirmTypes.Delete,
-        text: `Вы уверены что хотите удалить товар с номером ${id}?`,
-        textButton: 'Удалить',
-        csActionConfirm: this.deleteConfirm,
-        csCancelConfirm: this.cancelConfirm
-      }),
-      domConfirm
-    );
+    this.setState({
+      isConfirm: true,
+      deleteRowId: id
+    })
   },
   deleteConfirm: function (id) {
     const arrayCopy = this.state.products.filter((row) => row.id !== id);
     const arrayIdsCopy = this.state.selectedIds.filter(i => i !== id);
     this.setState({
       products: arrayCopy,
-      selectedIds: arrayIdsCopy
+      selectedIds: arrayIdsCopy,
+      isConfirm: false
     });
-    ReactDOM.unmountComponentAtNode(domConfirm);
   },
   cancelConfirm: function () {
-    ReactDOM.unmountComponentAtNode(domConfirm);
+    this.setState({
+      isConfirm: false
+    })
   },
   changedModeSingle: function () {
     this.setState({
@@ -92,24 +88,33 @@ const ShopTable = React.createClass({
       header,
       body
     );
+    const confirm = e(Confirm, {
+      key: this.state.deleteRowId,
+      item: this.state.deleteRowId,
+      type: ConfirmTypes.Delete,
+      text: `Вы уверены что хотите удалить товар с номером ${this.state.deleteRowId}?`,
+      textButton: 'Удалить',
+      csActionConfirm: this.deleteConfirm,
+      csCancelConfirm: this.cancelConfirm
+    });
     return d.div(null,
       d.h1({
         className: 'title'
       }, this.props.name, d.div({
-          className: 'btn-group float-right',
-          'role': 'group',
-        }, d.div(null, d.button({
-            onClick: this.changedModeSingle,
-            className: 'btn btn-info',
-            title: 'Получить возможность выбирать только один товар'
-          }, d.span(null, 'Одиночный выбор')),
-          d.button({
-            onClick: this.changedModeMulti,
-            className: 'btn btn-info',
-            title: 'Получить возможность выбирать несколько товаров'
-          }, d.span(null, 'Мульти выбор')))
-      )),
+        className: 'btn-group float-right',
+        'role': 'group',
+      }, d.div(null, d.button({
+          onClick: this.changedModeSingle,
+          className: 'btn btn-info',
+          title: 'Получить возможность выбирать только один товар'
+        }, d.span(null, 'Одиночный выбор')),
+        d.button({
+          onClick: this.changedModeMulti,
+          className: 'btn btn-info',
+          title: 'Получить возможность выбирать несколько товаров'
+        }, d.span(null, 'Мульти выбор'))))),
       table,
+      this.state.isConfirm ? confirm : null
     );
   },
 });
