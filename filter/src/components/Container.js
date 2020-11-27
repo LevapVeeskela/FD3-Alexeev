@@ -2,14 +2,14 @@ const Container = React.createClass({
   displayName: 'Container',
   getInitialState: function () {
     return {
-      dataRows: [...Data],
+      dataRows: [...this.props.data],
       isSort: false,
       sought: ''
     }
   },
   reset: function () {
     this.setState({
-      dataRows: [...Data],
+      dataRows: [...this.props.data],
       isSort: false,
       sought: ''
     })
@@ -23,7 +23,7 @@ const Container = React.createClass({
       return;
     }
     this.setState({
-      dataRows: [...Data.filter(row => row.includes(this.state.sought))],
+      dataRows: [...this.props.data.filter(row => row.includes(this.state.sought))],
       isSort: !this.state.isSort
     })
   },
@@ -37,7 +37,7 @@ const Container = React.createClass({
     }
 
     this.setState({
-      dataRows: [...Data],
+      dataRows: [...this.props.data],
       sought: ''
     })
   },
@@ -63,6 +63,7 @@ const Container = React.createClass({
       className: 'block-textarea form-control',
       rows: '5',
       value: this.state.dataRows.join('\n'),
+      readOnly: true
     })
 
     return d.div({

@@ -3,6 +3,6 @@ const d = React.DOM;
 const domContainer = document.getElementById('root');
 
 ReactDOM.render(
-    React.createElement(Container),
+    React.createElement(Container, { data: Data }),
     domContainer
 );
