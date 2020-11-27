@@ -10,16 +10,8 @@ const RowTable = React.createClass({
         cbDeleteRow: React.PropTypes.func,
         cbSelectRow: React.PropTypes.func,
     },
-    getInitialState: function () {
-        return {
-            isSelect: false,
-        };
-    },
     selectRow: function () {
         this.props.cbSelectRow(this.props.product.id)
-        this.setState({
-            isSelect: !this.state.isSelect
-        })
     },
     deleteRow: function ($event) {
         $event.stopPropagation();
