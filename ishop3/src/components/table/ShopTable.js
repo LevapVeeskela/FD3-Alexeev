@@ -107,7 +107,8 @@ class ShopTable extends React.Component {
     >
     </Confirm>
     
-    return <div>
+    return (
+    <div>
       <h1 className='title'>
         {this.props.name}
         <div 
@@ -128,8 +129,12 @@ class ShopTable extends React.Component {
         </div>
       </h1>
       {table}
-      {this.state.isConfirm ? confirm : null}
-    </div>;   
+      { 
+        this.state.isConfirm && 
+        confirm 
+      }
+    </div>
+    ) ;
   };
 };
 

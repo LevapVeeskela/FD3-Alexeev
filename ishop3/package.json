@@ -4,9 +4,9 @@
   "description": "thord homework",
   "main": "src/main.js",
   "scripts": {
-    "build": "webpack",
     "start": "lite-server",
-    "livebuild": "webpack-dev-server --progress --colors"
+    "build": "webpack",
+    "dev": "webpack-dev-server --progress --colors"
   },
   "author": "Alexeev Paul Vladimirovich",
   "license": "ISC",
@@ -32,7 +32,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.13",
     "bootstrap": "^4.0.0",
-    "fontawesome": "^5.6.3",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
