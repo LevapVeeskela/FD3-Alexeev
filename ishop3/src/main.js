@@ -12,6 +12,6 @@ import Container from './components/Container';
 const domContainer = document.getElementById('root');
 
 ReactDOM.render(
-    React.createElement(Container),
+    <Container></Container>,
     domContainer
 );

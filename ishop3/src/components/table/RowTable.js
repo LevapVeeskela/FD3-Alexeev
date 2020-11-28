@@ -1,31 +1,26 @@
-import React from 'react';;
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
     ModeSelectionTable
 } from '../../constants/enums'
 
-const e = React.createElement;
-const d = React.DOM;
+class RowTable extends React.Component {
 
-const RowTable = React.createClass({
-    displayName: 'RowTable',
-    propTypes: {
-        id: React.PropTypes.number,
-        name: React.PropTypes.string,
-        price: React.PropTypes.number,
-        photo: React.PropTypes.string,
-        count: React.PropTypes.number,
-        colors: React.PropTypes.array,
-        cbDeleteRow: React.PropTypes.func,
-        cbSelectRow: React.PropTypes.func,
-    },
-    selectRow: function () {
-        this.props.cbSelectRow(this.props.product.id)
-    },
-    deleteRow: function ($event) {
-        $event.stopPropagation();
-        this.props.cbDeleteRow(this.props.product.id)
-    },
-    changeStyle: function () {
+    constructor(props) {
+        super(props);
+    }
+
+    selectRow = () => {
+        this.props.cbSelectRow(this.props.product.id);
+    };
+
+    deleteRow = (EO) => {
+        EO.stopPropagation();
+        this.props.cbDeleteRow(this.props.product.id);
+    };
+
+    changeStyle = () => {
         switch (this.props.mode) {
             case ModeSelectionTable.Single:
                 return this.props.product.id && this.props.selectedLastId && this.props.product.id === this.props.selectedLastId ? 'selectRow' : '';
@@ -34,31 +29,33 @@ const RowTable = React.createClass({
             default:
                 return '';
         }
-    },
-    render: function () {
+    };
+    render() {
         let tr_class = this.changeStyle();
 
-        return e('tr', {
-                onClick: this.selectRow,
-                className: tr_class
-            },
-            d.td(null, this.props.product.id),
-            d.td(null, this.props.product.name),
-            d.td(null, `${this.props.product.price}$`),
-            d.td(null, e('img', {
-                src: this.props.product.photo,
-                className: 'imgIphone'
-            })),
-            d.td(null, this.props.product.count),
-            d.td(null, this.props.product.colors.join(', ')),
-            d.td(null, d.a({
-                onClick: this.deleteRow
-            }, d.i({
-                className: 'fab-custom remove fa fa-trash fa-3x',
-                title: 'Удалить товар из списка'
-            }))),
-        );
-    },
-});
+        return <tr onClick={this.selectRow} className={tr_class} >
+            <td>{this.props.product.id}</td>
+            <td>{this.props.product.name}</td>
+            <td>{this.props.product.price}</td>
+            <td><img src={this.props.product.photo} className='imgIphone'/></td>
+            <td>{this.props.product.count}</td>
+            <td>{this.props.product.colors.join(', ')}</td>
+            <td><a onClick={this.deleteRow}> <i className='fab-custom remove fa fa-trash fa-3x' title='Удалить товар из списка' ></i></a></td>
+        </tr>
+    };
+};
+
+RowTable.propTypes = {
+    product: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        price: PropTypes.number,
+        photo: PropTypes.string,
+        count: PropTypes.number,
+        colors: PropTypes.array
+    }),
+    cbDeleteRow: PropTypes.func,
+    cbSelectRow: PropTypes.func,
+};
 
 export default RowTable;

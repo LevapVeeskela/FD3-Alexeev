@@ -8,20 +8,17 @@
 
   const DataShops = require('../../public/data.json');
 
-  const Container = React.createClass({
-    displayName: 'Container',
-    render: function () {
-      const tables = DataShops.map(m =>
-        React.createElement(ShopTable, {
-          key: m.id,
-          name: m.name,
-          products: m.products,
-          mode: ModeSelectionTable.Single
-        })
+  class Container extends React.Component {
+    render() {
+      const tables = DataShops.map(m => <ShopTable
+        key= {m.id}
+        name= {m.name}
+        products= {m.products}
+        mode= {ModeSelectionTable.Single}></ShopTable>
       );
 
-      return React.DOM.div(null, tables)
-    },
-  });
+      return <div>{tables}</div>
+    }
+  };
 
-  export default Container;
+  export default Container; 

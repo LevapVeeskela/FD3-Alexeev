@@ -4,52 +4,48 @@ import React from 'react';
 import './Confirm.css';
 
 // helpers
-import { SelectConfirmStyle, SelectConfirmIcon} from '../../helpers/ConfirmHelper';
+import {
+    SelectConfirmStyle,
+    SelectConfirmIcon
+} from '../../helpers/ConfirmHelper';
 
-const d = React.DOM;
+class Confirm extends React.Component {
 
-const Confirm = React.createClass({
-    displayName: 'Confirm',
-    getDefaultProps: function () {
-        return {
-            textButton: 'Oк'
-        }
-    },
-    actionConfirm: function () {
+    actionConfirm = () => {
         this.props.csActionConfirm(this.props.item);
-    },
-    cancelConfirm: function () {
+    };
+    cancelConfirm = () => {
         this.props.csCancelConfirm();
-    },
-    render: function () {
-        return d.div({
-                className: `${SelectConfirmStyle(this.props.type)} confirmBox`,
-                'role': 'alert'
-            },
-            d.div({
-                className: 'row'
-            }, d.i({
-                className: `${SelectConfirmIcon(this.props.type)} col-2`
-            }), d.h5({
-                className: 'textConfirm  col-10'
-            }, this.props.text)),
-            d.button({
-                value: this.props.textButton,
-                type: 'button',
-                className: 'col-12 btn btn-outline-success',
-                onClick: this.actionConfirm
-            }, d.span(null, this.props.textButton)),
-            d.button({
-                value: 'Отмена',
-                className: 'close',
-                'data-dismiss': 'alert',
-                'aria-label': 'Close',
-                onClick: this.cancelConfirm
-            }, d.span({
-                'aria-hidden': 'true'
-            }, '\u00D7'))
-        )
+    };
+    render() {
+        return <div className={`${SelectConfirmStyle(this.props.type)} confirmBox`} role='alert'>
+            <div className='row'>
+                <i className={`${SelectConfirmIcon(this.props.type)} col-2`}> </i>
+                <h5 className='textConfirm  col-10'>{this.props.text}</h5>
+                    <button value={this.props.textButton}
+                        type='button'
+                        className='col-12 btn btn-outline-success'
+                        onClick={this.actionConfirm}>
+                    <span>
+                        {this.props.textButton}
+                    </span>
+                </button>
+                <button  className= 'close'
+                        type='button'
+                        data-dismiss='alert'
+                        aria-label='Close'
+                        onClick= {this.cancelConfirm}>        
+                    <span aria-hidden='true'>
+                        {'\u00D7'}
+                    </span>
+                </button>
+            </div>
+        </div>
     }
-})
+}
+
+Confirm.defaultProps = {
+    textButton: 'Oк'
+}
 
 export default Confirm;
