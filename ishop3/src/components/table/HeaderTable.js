@@ -1,3 +1,7 @@
+import React from 'react';
+const e = React.createElement;
+const d = React.DOM;
+
 const HeaderTable = React.createClass({
     displayName: 'HeaderTable',
     render: function () {
@@ -12,3 +16,5 @@ const HeaderTable = React.createClass({
       return d.thead(null, d.tr(null, renderTableHeader()));
     },
   });
+
+export default HeaderTable;

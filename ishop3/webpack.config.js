@@ -1,29 +1,53 @@
 const path = require('path');
 
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const {
+    CleanWebpackPlugin
+} = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
+const progress = new webpack.ProgressPlugin();
+const cleanWebpack = new CleanWebpackPlugin();
 const extractCSS = new ExtractTextPlugin({
-    filename: "bundle.css"
+    filename: 'bundle.css'
+});
+const htmlWebpack = new HtmlWebpackPlugin({
+    title: 'Ishop3-React',
+    inlineSource: '.(js|css)$',
+    template: 'public/index.html'
 });
 
-module.exports = { 
-    entry: "./main.js",
-    output:{ 
-        path: __dirname, 
-        filename: "bundle.js" 
-    }, 
-    devtool:'source-map',
-    module:{ 
-        rules:[
-            {
+module.exports = {
+    entry: './src/main',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
+    },
+    devtool: 'source-map',
+    module: {
+        rules: [{
                 test: /\.css$/,
                 use: extractCSS.extract({
-                    use: ["css-loader"]
+                    fallback: "style-loader",
+                    use: ['css-loader']
                 })
-            }            
-        ] 
+            },
+            {
+                test: /\.svg$/,
+                use: [{
+                    loader: 'svg-url-loader',
+                    options: {
+                        limit: 10000,
+                    },
+                }, ],
+            },
+        ]
     },
     plugins: [
-        extractCSS
+        progress,
+        cleanWebpack,
+        extractCSS,
+        htmlWebpack,
     ]
 }

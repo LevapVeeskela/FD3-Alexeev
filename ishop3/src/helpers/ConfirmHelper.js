@@ -1,4 +1,6 @@
-const SelectConfirmStyle = function (type) {
+import { ConfirmTypes, ConfirmClassesName, ConfirmIcons } from '../constants/enums';
+
+export const SelectConfirmStyle = function (type) {
     switch (type) {
         case ConfirmTypes.Warning:
             return ConfirmClassesName.Warning;
@@ -9,7 +11,7 @@ const SelectConfirmStyle = function (type) {
     }
 }
 
-const SelectConfirmIcon = function (type) {
+export const SelectConfirmIcon = function (type) {
     switch (type) {
         case ConfirmTypes.Warning:
             return ConfirmIcons.Warning;

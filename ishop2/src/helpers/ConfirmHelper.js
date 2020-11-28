@@ -1,3 +1,5 @@
+
+
 const SelectConfirmStyle = function (type) {
     switch (type) {
         case ConfirmTypes.Warning:

@@ -1,3 +1,16 @@
+// node_modules
+import React from 'react';
+
+// components
+import Confirm from '../confirms/Confirm';
+import HeaderTable from './HeaderTable';
+import RowTable from './RowTable';
+
+import { ConfirmTypes, ModeSelectionTable } from '../../constants/enums';
+
+const e = React.createElement;
+const d = React.DOM;
+
 const ShopTable = React.createClass({
   displayName: 'ShopTable',
   getDefaultProps: function () {
@@ -118,3 +131,5 @@ const ShopTable = React.createClass({
     );
   },
 });
+
+export default ShopTable;

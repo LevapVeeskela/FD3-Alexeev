@@ -1,3 +1,13 @@
+import React from 'react';
+
+// styles
+import './Confirm.css';
+
+// helpers
+import { SelectConfirmStyle, SelectConfirmIcon} from '../../helpers/ConfirmHelper';
+
+const d = React.DOM;
+
 const Confirm = React.createClass({
     displayName: 'Confirm',
     getDefaultProps: function () {
@@ -41,3 +51,5 @@ const Confirm = React.createClass({
         )
     }
 })
+
+export default Confirm;

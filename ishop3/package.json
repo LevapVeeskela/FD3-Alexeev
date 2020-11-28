@@ -1,0 +1,34 @@
+{
+  "name": "ishop3",
+  "version": "1.0.0",
+  "description": "thord homework",
+  "main": "src/main.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "lite-server"
+  },
+  "author": "Alexeev Paul Vladimirovich",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "3.2.0",
+    "lite-server": "^2.6.1",
+    "style-loader": "^2.0.0",
+    "svg-url-loader": "^7.1.0",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.13",
+    "bootstrap": "^4.0.0",
+    "fontawesome": "^5.6.3",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}

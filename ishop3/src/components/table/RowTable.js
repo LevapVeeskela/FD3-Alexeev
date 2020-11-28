@@ -1,3 +1,11 @@
+import React from 'react';;
+import {
+    ModeSelectionTable
+} from '../../constants/enums'
+
+const e = React.createElement;
+const d = React.DOM;
+
 const RowTable = React.createClass({
     displayName: 'RowTable',
     propTypes: {
@@ -10,16 +18,8 @@ const RowTable = React.createClass({
         cbDeleteRow: React.PropTypes.func,
         cbSelectRow: React.PropTypes.func,
     },
-    getInitialState: function () {
-        return {
-            isSelect: false,
-        };
-    },
     selectRow: function () {
         this.props.cbSelectRow(this.props.product.id)
-        this.setState({
-            isSelect: !this.state.isSelect
-        })
     },
     deleteRow: function ($event) {
         $event.stopPropagation();
@@ -28,7 +28,7 @@ const RowTable = React.createClass({
     changeStyle: function () {
         switch (this.props.mode) {
             case ModeSelectionTable.Single:
-                return  this.props.product.id && this.props.selectedLastId && this.props.product.id === this.props.selectedLastId ? 'selectRow' : '';
+                return this.props.product.id && this.props.selectedLastId && this.props.product.id === this.props.selectedLastId ? 'selectRow' : '';
             case ModeSelectionTable.Multi:
                 return this.props.selectedIds && this.props.selectedIds.length > 0 && this.props.selectedIds.findIndex(i => i === this.props.product.id) !== -1 ? 'selectRow' : '';
             default:
@@ -54,9 +54,11 @@ const RowTable = React.createClass({
             d.td(null, d.a({
                 onClick: this.deleteRow
             }, d.i({
-                className: 'fab remove fa fa-trash fa-3x',
+                className: 'fab-custom remove fa fa-trash fa-3x',
                 title: 'Удалить товар из списка'
             }))),
         );
     },
 });
+
+export default RowTable;
