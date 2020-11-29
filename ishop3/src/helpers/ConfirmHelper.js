@@ -21,3 +21,4 @@ export const SelectConfirmIcon = function (type) {
             return ConfirmIcons.Info;
     }
 }
+
