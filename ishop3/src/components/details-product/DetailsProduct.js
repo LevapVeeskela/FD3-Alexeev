@@ -12,21 +12,22 @@ class DetailsProduct extends React.Component{
         super(props)
         this.state = {
             product: {...props.product}, 
-            validRules: {
-                name: `${props.product.name.length > 0 ? 'is-valid' : 'is-invalid'}`,
-                price: `${props.product.price > 0 ? 'is-valid' : 'is-invalid'}`,
-                photo: `${props.product.photo.length > 0 ? 'is-valid' : 'is-invalid'}`,
-                count: `${props.product.count > 0 ? 'is-valid' : 'is-invalid'}`,
-                colors: `${props.product.colors.length > 0 ? 'is-valid' : 'is-invalid'}`,
-            }
+            validRules: this.getValidateRules(props)
         };
     }
 
-    cheackValidation = () => {
-
+    getValidateRules = (store) => {
+        return {
+            name: `${store.product.name.length > 0 ? 'is-valid' : 'is-invalid'}`,
+            price: `${store.product.price > 0 ? 'is-valid' : 'is-invalid'}`,
+            photo: `${store.product.photo.length > 0 ? 'is-valid' : 'is-invalid'}`,
+            count: `${store.product.count > 0 ? 'is-valid' : 'is-invalid'}`,
+            colors: `${store.product.colors.length > 0 ? 'is-valid' : 'is-invalid'}`,
+        };
     }
 
     UNSAFE_componentWillReceiveProps = (newProps) => { 
+        this.state.validRules = this.getValidateRules(newProps)
         this.setState({
             ...this.state,
             product:  newProps.product,
@@ -45,13 +46,7 @@ class DetailsProduct extends React.Component{
         this.state.product = { ...this.state.product,
             [EO.target.name]: CastToNeedType(EO.target.value, EO.target.name)
         };
-        this.state.validRules = {
-            name: `${this.state.product.name.length > 0 ? 'is-valid' : 'is-invalid'}`,
-            price: `${this.state.product.price > 0 ? 'is-valid' : 'is-invalid'}`,
-            photo: `${this.state.product.photo.length > 0 ? 'is-valid' : 'is-invalid'}`,
-            count: `${this.state.product.count > 0 ? 'is-valid' : 'is-invalid'}`,
-            colors: `${this.state.product.colors.length > 0 ? 'is-valid' : 'is-invalid'}`,
-        };
+        this.state.validRules = this.getValidateRules(this.state);
         this.props.cbChangeIsEditing(JSON.stringify(this.props.product) !== JSON.stringify(this.state.product));
         this.setState({
             ...this.state
