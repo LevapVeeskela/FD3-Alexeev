@@ -44,7 +44,6 @@ class ShopTable extends React.Component {
       return;
     }
 
-
     this.setState({
       selectedLastId: id,
       modeDetails: DetailsTypes.Info
@@ -79,7 +78,7 @@ class ShopTable extends React.Component {
     this.setState({
       isConfirm: true,
       deleteRowId: id,
-      modeDetails: DetailsTypes.Info
+      modeDetails: this.state.selectedLastId ?  DetailsTypes.Info : null
     })
   };
 
