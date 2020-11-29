@@ -20,7 +20,7 @@ export const CastToNeedType = function(value, name) {
         case 'count': 
             return Number(value);
         case 'colors':
-            return value.split('\n')
+            return value && value.length > 0 ? value.split('\n') : [];
         default: 
             return value;
     }
