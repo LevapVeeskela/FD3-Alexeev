@@ -5,6 +5,7 @@ import {
     DetailsTypes
 } from '../../constants/enums';
 import { TextModeInfo, CastToNeedType } from '../../helpers/DetailsProductHelper';
+import { ProductModel } from '../../components/table/models/ProductModel';
 
 import './DetailsProduct.css'
 class DetailsProduct extends React.Component{
@@ -133,6 +134,7 @@ class DetailsProduct extends React.Component{
 DetailsProduct.defaultProps = {
     mode: DetailsTypes.Info ,
     isEditing: false,
+    product: new ProductModel().defaultValues()
   
 };
   
