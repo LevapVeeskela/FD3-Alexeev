@@ -6,9 +6,11 @@ import PropTypes from 'prop-types';
 import Confirm from '../confirms/Confirm';
 import HeaderTable from './HeaderTable';
 import RowTable from './RowTable';
+import DetailsProduct from '../details-product/DetailsProduct';
 
 import {
   ConfirmTypes,
+  DetailsTypes,
   ModeSelectionTable
 } from '../../constants/enums';
 
@@ -21,12 +23,14 @@ class ShopTable extends React.Component {
       selectedLastId: null,
       mode: props.mode,
       isConfirm: false,
-      deleteRowId: null
+      deleteRowId: null,
+      modeDetails: null
     };
   }
   selectRow = (id) => {
     this.setState({
-      selectedLastId: id
+      selectedLastId: id,
+      modeDetails: DetailsTypes.Info
     })
 
     if (this.state.mode === ModeSelectionTable.Single) {
@@ -46,7 +50,8 @@ class ShopTable extends React.Component {
   deleteRow = (id) => {
     this.setState({
       isConfirm: true,
-      deleteRowId: id
+      deleteRowId: id,
+      modeDetails: DetailsTypes.Info
     })
   };
   deleteConfirm = (id) => {
@@ -55,7 +60,8 @@ class ShopTable extends React.Component {
     this.setState({
       products: arrayCopy,
       selectedIds: arrayIdsCopy,
-      isConfirm: false
+      isConfirm: false,
+      modeDetails: null
     });
   };
   cancelConfirm = () => {
@@ -96,6 +102,21 @@ class ShopTable extends React.Component {
       {body}
     </table>
 
+    const details = ( 
+      this.state.modeDetails ? 
+        (this.state.mode === ModeSelectionTable.Single ? 
+        (<div className='row'>
+          <DetailsProduct  mode={this.state.modeDetails} product={this.state.products.find(p => p.id === this.state.selectedLastId)}></DetailsProduct>
+        </div>
+        ) 
+        : ( this.state.products.filter(p => this.state.selectedIds.includes(id => id === p.id)).map(p => (
+          <div className='row'>
+            <DetailsProduct mode={this.state.modeDetails} product={p}></DetailsProduct>
+          </div>
+        ))))
+      : null
+    );
+    
     const confirm = <Confirm
       key= {this.state.deleteRowId}
       item= {this.state.deleteRowId}
@@ -129,6 +150,7 @@ class ShopTable extends React.Component {
         </div>
       </h1>
       {table}
+      {details}
       { 
         this.state.isConfirm && 
         confirm 

@@ -21,3 +21,9 @@ export const ModeSelectionTable = Object.freeze({
     Multi:  1 << 1,
 });
 
+export const DetailsTypes = Object.freeze({
+    Info: 1 << 0,
+    Create: 1 << 1,
+    Edit: 1 << 2
+});
+
