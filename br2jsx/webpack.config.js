@@ -13,8 +13,6 @@ const extractCSS = new ExtractTextPlugin({
     filename: 'bundle.css'
 });
 const htmlWebpack = new HtmlWebpackPlugin({
-    title: 'Ishop3-React', // не обязательный с template
-    inlineSource: '.(js|css)$', // не обязательный с template
     template: 'public/index.html'
 });
 
