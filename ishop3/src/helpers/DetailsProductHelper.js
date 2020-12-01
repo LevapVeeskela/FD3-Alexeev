@@ -1,4 +1,3 @@
-import { ready } from 'jquery';
 import { DetailsTypes } from '../constants/enums';
 
 export const TextModeInfo = function (mode, product) {

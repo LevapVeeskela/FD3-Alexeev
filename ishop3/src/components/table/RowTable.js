@@ -41,10 +41,11 @@ class RowTable extends React.Component {
                 return '';
         }
     };
+
     render() {
         let tr_class = this.changeStyle();
         return (
-        <tr onClick={this.selectRow} className={tr_class} >
+        <tr onClick={this.selectRow} className={tr_class}>
             <td>{this.props.product.id}</td>
             <td>{this.props.product.name}</td>
             <td>{this.props.product.price}</td>
@@ -53,13 +54,13 @@ class RowTable extends React.Component {
             <td>{this.props.product.colors.join(', ')}</td>
             <td>
                 <button disabled={this.props.selectedLastId === this.props.product.id && this.props.modeDetails === DetailsTypes.Edit} onClick={this.editProduct} style={{border: 0, padding: 0}}> <i className='fab-custom edit fa fa-edit fa-3x' title='Editing product'></i></button>
-                <a onClick={this.deleteRow}> <i className='fab-custom remove fa fa-trash fa-3x' title='Delete product' ></i></a>
+                <a onClick={this.deleteRow}><i className='fab-custom remove fa fa-trash fa-3x' title='Delete product'></i></a>
             </td>
         </tr>
         );
     };
 };
-// (this.props.selectedLastId !== this.props.product.id && this.props.modeDetails !== DetailsTypes.Edit) &&
+
 RowTable.propTypes = {
     product: PropTypes.shape({
         id: PropTypes.number,
