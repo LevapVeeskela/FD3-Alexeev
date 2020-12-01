@@ -149,18 +149,19 @@ class ShopTable extends React.Component {
   };
 
   addProduct= (product) => {
+    const products = [...this.state.products];
     product.id = Math.max(...this.state.products.map(p => p.id)) + 1;
-    this.state.products.push(product);
     this.setState({
-      products: [...this.state.products],
+      products: products.push(product),
       modeDetails: null,  
     })
   };
 
   saveProduct = (product) => {
-    this.state.products[this.state.products.findIndex(p => p.id === this.state.selectedLastId)] = product;
+    const products = [...this.state.products];
+    products[this.state.products.findIndex(p => p.id === this.state.selectedLastId)] = product;
     this.setState({
-      products: [...this.state.products] 
+      products: products
     });
     this.isEditing = false;
   };
@@ -249,14 +250,14 @@ class ShopTable extends React.Component {
            role='group'>
             <div>
               <button onClick= {this.changedModeSingle}
-                      className='btn btn-info'
+                      className='btn btn-success'
                       title='Will get opportunity to select one product only'>
-                    <span>Одиночный выбор</span>
+                    <span>Single</span>
               </button>  
               <button onClick= {this.changedModeMulti}
-                      className='btn btn-info'
+                      className='btn btn-success'
                       title='Will get opportunity to select several products'>
-                <span>Мульти выбор</span>
+                <span>Multi</span>
               </button>
             </div>
         </div>
