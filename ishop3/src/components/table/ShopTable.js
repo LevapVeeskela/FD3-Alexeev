@@ -151,8 +151,9 @@ class ShopTable extends React.Component {
   addProduct= (product) => {
     const products = [...this.state.products];
     product.id = Math.max(...this.state.products.map(p => p.id)) + 1;
+    products.push(product);
     this.setState({
-      products: products.push(product),
+      products: products,
       modeDetails: null,  
     })
   };
