@@ -4,79 +4,105 @@ import PropTypes from 'prop-types';
 import {
     DetailsTypes
 } from '../../constants/enums';
-import { TextModeInfo, CastToNeedType } from '../../helpers/DetailsClientHelper';
+import { TextModeInfo } from '../../helpers/DetailsClientHelper';
+
+import { dataEvents } from '../events';
 
 import './DetailsClient.css';
 
 class DetailsClient extends PureComponent{
     constructor(props){
         super(props)
-        this.state = {
-            ...props,
-            validRules: this.getValidateRules(props)
-        };
+        this.state={
+               ...props
+        }
     }
 
-    getValidateRules = (store) => {
-        return {
-            name: `${store.product.name.length > 0 ? 'is-valid' : 'is-invalid'}`,
-            price: `${store.product.price > 0 ? 'is-valid' : 'is-invalid'}`,
-            photo: `${store.product.photo.length > 0 ? 'is-valid' : 'is-invalid'}`,
-            count: `${store.product.count > 0 ? 'is-valid' : 'is-invalid'}`,
-            colors: `${store.product.colors.length > 0 ? 'is-valid' : 'is-invalid'}`,
-        };
-    }
-
-    UNSAFE_componentWillReceiveProps = (newProps) => { 
-        this.state.validRules = this.getValidateRules(newProps)
-        this.setState({
-            ...this.state,
-            product:  newProps.product,
-        })
+    inputIdRef = null;
+    inputSurnameRef = null;
+    inputNameRef = null;
+    inputPatronymicRef = null;
+    inputBalanceRef = null;
+    
+    setNewIdRef = (ref) => {
+        this.inputIdRef = ref;
+    };
+    setNewSurnameRef = (ref) => {
+        this.inputSurnameRef = ref;
+    };
+    setNewNameRef = (ref) => {
+        this.inputNameRef = ref;
+    };
+    setNewPatronymicRef = (ref) => {
+        this.inputPatronymicRef = ref;
+    };
+    setNewBalanceRef = (ref) => {
+        this.inputBalanceRef = ref;
     };
 
-    // static getDerivedStateFromProps(newProps, prevState) { // вызывается при обновление state и получение новых свойств
-    //     console.log(arguments)
-    //     return {
-    //         ...prevState,
-    //         product:  newProps.product,
-    //     };
-    // }
+    componentDidMount = () => {
+        dataEvents.addListener('EChangeSelectClient', this.changeSelectRow);
+        dataEvents.addListener('EEditClient', this.editClient);
+    };
+
+    componentWillUnmount = () => {
+        dataEvents.removeListener('EChangeSelectClient', this.changeSelectRow);
+        dataEvents.removeListener('EEditClient', this.editClient);
+    };
+
+    changeSelectRow = (data) => {
+        if(this.props.client.id !== data.id){
+            this.changeInnerValues(data);
+        }
+    } 
     
-    changeValue = (EO) => {
-        this.state.product = { ...this.state.product,
-            [EO.target.name]: CastToNeedType(EO.target.value, EO.target.name)
-        };
-        this.state.validRules = this.getValidateRules(this.state);
-        this.props.cbChangeIsEditing(JSON.stringify(this.props.product) !== JSON.stringify(this.state.product));
-        this.setState({
-            ...this.state
-        })
+    editClient = (data) => {
+        if(this.props.client.id !== data.id){
+            this.changeInnerValues(data);
+        }
     }
 
-    cancelProduct = () => {
-        this.props.cbCancel();
+    cancel = () => {
+        dataEvents.emit('ECancelClient');
     }
 
-    addProduct = () => {
-        this.props.cbAdd(this.state.product);
+    add = () => {
+        dataEvents.emit('EAddClient', this.getClientFromRefs());
     }  
 
-    saveProduct = () => {
-        this.props.cbSave(this.state.product);
+    save = () => {
+        dataEvents.emit('ESaveClient', this.getClientFromRefs());
+    }
+
+    getClientFromRefs = () => ({
+        id: this.inputIdRef && this.inputIdRef.value,
+        surname: this.inputSurnameRef.value,
+        name: this.inputNameRef.value,
+        patronymic: this.inputPatronymicRef.value,
+        balance: Number(this.inputBalanceRef.value),
+        active: true
+    });
+
+    changeInnerValues = (store) => {
+        if(this.inputIdRef)
+            this.inputIdRef.value = store.id;
+        this.inputSurnameRef.value = store.surname;
+        this.inputNameRef.value = store.name;
+        this.inputPatronymicRef.value = store.patronymic;
+        this.inputBalanceRef.value = store.balance;
     }
 
     render(){
-        const isDisabled = Object.values(this.state.validRules).includes('is-invalid');
+        console.log('DetailsClient');
 
         const buttons = (this.props.mode === DetailsTypes.Create || this.props.mode === DetailsTypes.Edit ? 
             <div className='button-details'>
                 <div className='row'>
                     {   this.props.mode === DetailsTypes.Create ?
-                        <button type="button" disabled={isDisabled} onClick={this.addProduct} className="btn btn-success">Add</button> :
-                        <button type="button" disabled={isDisabled} onClick={this.saveProduct} className="btn btn-success">Save</button>
+                        <button type="button" onClick={this.add} className="btn btn-success">Add</button> :
+                        <button type="button" onClick={this.save} className="btn btn-success">Save</button>
                     }
-                    <button type="button" onClick={this.cancelProduct} style={{marginLeft: "10px"}} className="btn btn-danger">Отмена</button>
+                    <button type="button" onClick={this.cancel} style={{marginLeft: "10px"}} className="btn btn-danger">Отмена</button>
                 </div>
             </div> 
             : null
@@ -85,45 +111,39 @@ class DetailsClient extends PureComponent{
         return (
             <div className='col-10 form-control' style={{marginTop: "20px"}}>
                 <h5>
-                    {TextModeInfo(this.props.mode, this.props.product)}
+                    {TextModeInfo(this.props.mode, this.props.client)}
                 </h5>
                 { this.props.mode === DetailsTypes.Info &&
                     (<div className='input-group mb-3'>
                         <div className='input-group-prepend'>
                             <span className='input-group-text' id='basic-addon1'>Id</span>
                         </div>
-                        <input type='text' value={this.state.product.id} className='form-control' readOnly aria-describedby='basic-addon1'/>
+                        <input type='text' defaultValue={this.state.client.id} className='form-control' readOnly aria-describedby='basic-addon1' ref={this.setNewIdRef}/>
                     </div>) 
                 }  
                 <div className='input-group mb-3'>
                     <div className='input-group-prepend'>
+                        <span className='input-group-text' id='basic-addon2'>Surname</span>
+                    </div>
+                    <input type='text' defaultValue={this.state.client.surname}  ref={this.setNewSurnameRef} name="surname" readOnly={this.props.mode === DetailsTypes.Info} className='form-control' placeholder='Enter name client...' aria-label='Name client' aria-describedby='basic-addon2' aria-describedby='basic-addon2' required/>
+                </div>      
+                <div className='input-group mb-3'>
+                    <div className='input-group-prepend'>
                         <span className='input-group-text' id='basic-addon2'>Name</span>
                     </div>
-                    <input type='text' value={this.state.product.name} onChange={this.changeValue} name="name" readOnly={this.props.mode === DetailsTypes.Info} className={`form-control ${this.props.mode === DetailsTypes.Info ? '' : this.state.validRules.name}`} placeholder='Enter name product...' aria-label='Name product' aria-describedby='basic-addon2' aria-describedby='basic-addon2' required/>
+                    <input type='text' defaultValue={this.state.client.name} ref={this.setNewNameRef} name="name" readOnly={this.props.mode === DetailsTypes.Info} className='form-control' placeholder='Enter name client...' aria-label='Name client' aria-describedby='basic-addon2' aria-describedby='basic-addon2' required/>
+                </div>
+                <div className='input-group mb-3'>
+                    <div className='input-group-prepend'>
+                        <span className='input-group-text' id='basic-addon2'>Patronymic</span>
+                    </div>
+                    <input type='text' defaultValue={this.state.client.patronymic} ref={this.setNewPatronymicRef} name="patronymic" readOnly={this.props.mode === DetailsTypes.Info} className='form-control' placeholder='Enter name client...' aria-label='Name client' aria-describedby='basic-addon2' aria-describedby='basic-addon2' required/>
                </div>    
                <div className='input-group mb-3'>
                     <div className='input-group-prepend'>
-                        <span className='input-group-text' id='basic-addon3'>Price</span>
+                        <span className='input-group-text' id='basic-addon3'>Balance</span>
                     </div>
-                    <input type='number' value={this.state.product.price} onChange={this.changeValue} name="price" readOnly={this.props.mode === DetailsTypes.Info} className={`form-control ${this.props.mode === DetailsTypes.Info ? '' : this.state.validRules.price}`}  placeholder='Enter price product...' aria-label='Price product' aria-describedby='basic-addon3' aria-describedby='basic-addon3' required/>
-                </div> 
-                <div className='input-group mb-3'>
-                    <div className='input-group-prepend'>
-                        <span className='input-group-text' id='basic-addon4'>Photo</span>
-                    </div>
-                    <input type='text' value={this.state.product.photo} onChange={this.changeValue} name="photo" readOnly={this.props.mode === DetailsTypes.Info} className={`form-control ${this.props.mode === DetailsTypes.Info ? '' : this.state.validRules.photo}`}  placeholder='Enter URL photo product...' id='basic-url' aria-describedby='basic-addon4' required/>
-                </div>              
-                <div className='input-group mb-3'>
-                    <div className='input-group-prepend'>
-                        <span className='input-group-text' id='basic-addon5'>Count</span>
-                    </div>
-                    <input type='number' value={this.state.product.count} onChange={this.changeValue} name="count" readOnly={this.props.mode === DetailsTypes.Info} className={`form-control ${this.props.mode === DetailsTypes.Info ? '' : this.state.validRules.count}`}  placeholder='Enter count in stock' aria-label='Count in stock' aria-describedby='basic-addon5' aria-describedby='basic-addon5' required/>
-                </div>
-                <div className='input-group'>
-                    <div className='input-group-prepend'>
-                        <span className='input-group-text'>Сolors</span>
-                    </div>
-                    <textarea value={this.state.product.colors.join('\n')} onChange={this.changeValue} name="colors" rows={this.state.product.colors.length} readOnly={this.props.mode === DetailsTypes.Info} className={`form-control ${this.props.mode === DetailsTypes.Info ? '' : this.state.validRules.colors}`} placeholder='Enter colors product...' aria-label='With textarea' required></textarea>
+                    <input type='number' defaultValue={this.state.client.balance} ref={this.setNewBalanceRef} name="balance" readOnly={this.props.mode === DetailsTypes.Info} className='form-control' placeholder='Enter price client...' aria-label='Price client' aria-describedby='basic-addon3' aria-describedby='basic-addon3' required/>
                 </div> 
                 {buttons}
             </div>
@@ -138,17 +158,12 @@ DetailsClient.defaultProps = {
   
 DetailsClient.propTypes = {
     mode: PropTypes.number, // инфо, создание, редактирование
-    product: PropTypes.shape({
-        id: PropTypes.number,
-        name: PropTypes.string,
-        price: PropTypes.number,
-        photo: PropTypes.string,
-        count: PropTypes.number,
-        colors: PropTypes.array
-    }),
-    cbAdd: PropTypes.func,
-    cbSave: PropTypes.func,
-    cbCancel: PropTypes.func,
+    id: PropTypes.number,
+    surname: PropTypes.string,
+    name: PropTypes.string,
+    patronymic: PropTypes.string,
+    balance: PropTypes.number,
+    active: PropTypes.bool
 };
 
 export default DetailsClient;

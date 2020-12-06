@@ -7,21 +7,27 @@ import {
 
 import {SelectClassStatus, SelectTextStatus} from '../../helpers/RowHelper'
 import './RowTable.css';
+import { dataEvents } from '../events';
 
 class RowTable extends PureComponent {
-    deleteRow = (EO) => {
+    deleteClient = (EO) => {
         EO.stopPropagation();
+        dataEvents.emit('EDeleteClient', this.props.client.id)
     }; 
 
-    editclient = (EO) => {
+    editClient = (EO) => {
         EO.stopPropagation();
+        dataEvents.emit('EEditClient', this.props.client)
     };
 
-
+    selectClient = () => {
+        dataEvents.emit('EChangeSelectClient', this.props.client)
+    }
+    
     render() {
         console.log('RowTable');
         return (
-        <tr>
+        <tr onClick={this.selectClient}>
             <td>{this.props.client.id}</td>
             <td>{this.props.client.surname}</td>
             <td>{this.props.client.name}</td>
@@ -29,8 +35,8 @@ class RowTable extends PureComponent {
             <td>{this.props.client.balance}</td>
             <td className={SelectClassStatus(this.props.client.active)}>{SelectTextStatus(this.props.client.active)}</td>
             <td>
-                <button disabled={this.props.selectedLastId === this.props.client.id && this.props.modeDetails === DetailsTypes.Edit} onClick={this.editclient} style={{border: 0, padding: 0}}> <i className='fab-custom edit fa fa-edit fa-3x' title='Editing client'></i></button>
-                <a onClick={this.deleteRow}><i className='fab-custom remove fa fa-trash fa-3x' title='Delete client'></i></a>
+                <button onClick={this.editClient} style={{border: 0, padding: 0}}> <i className='fab-custom edit fa fa-edit fa-3x' title='Editing client'></i></button>
+                <a onClick={this.deleteClient}><i className='fab-custom remove fa fa-trash fa-3x' title='Delete client'></i></a>
             </td>
         </tr>
         );

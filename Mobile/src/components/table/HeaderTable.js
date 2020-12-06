@@ -1,15 +1,14 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 
-class HeaderTable extends PureComponent {
+class HeaderTable extends Component {
+  shouldComponentUpdate = (nextProps) => (JSON.stringify(nextProps) !== JSON.stringify(this.props));
 
-  renderTableHeader = () => {
-    return  this.props.headers.concat(this.props.additionalHedaers).map((key, index) => {
+  renderTableHeader = () => (this.props.headers.concat(this.props.additionalHedaers).map((key, index) => {
       return <th key={index}>
         {key.toUpperCase()}
       </th>
-    })
-  }
-  shouldComponentUpdate()
+  }));
+  
   render() {
     console.log('HeaderTable');
     return (<thead>

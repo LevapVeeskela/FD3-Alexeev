@@ -2,11 +2,19 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import Data from '../../../public/data.json';
+
 // components
 import Confirm from '../confirms/Confirm';
 import HeaderTable from './HeaderTable';
 import RowTable from './RowTable';
 import DetailsClient from '../details-clients/DetailsClient';
+
+// streams events
+import { dataEvents, companyEvents } from '../events';
+
+// models
+import { ClientModel } from './models/ClientModel'; 
 
 import {
   ConfirmTypes,
@@ -17,27 +25,53 @@ class Table extends PureComponent{
   constructor(props) {
     super(props);
     this.state = {
-      company: '',
-      clients: props.clients,
+      company: this.props.company,
+      clients: this.props.clients,
+      selectClient: null,
       isConfirm: false,
       deleteRowId: null,
       modeDetails: null, 
     };
   }
 
+  componentDidMount = () => {
+    companyEvents.addListener('EChangeCompany',this.changeCompany);
+    dataEvents.addListener('EChangeSelectClient', this.changeSelectRow);
+    dataEvents.addListener('EDeleteClient', this.deleteRow);
+    dataEvents.addListener('EEditClient', this.editClient);
+    dataEvents.addListener('ECancelClient', this.cancelClient);
+    dataEvents.addListener('EAddClient', this.addClient);
+    dataEvents.addListener('ESaveClient', this.saveClient);
+  };
+
+  componentWillUnmount = () => {
+    companyEvents.removeListener('EChangeCompany',this.changeCompany);
+    dataEvents.removeListener('EChangeSelectClient', this.changeSelectRow);
+    dataEvents.removeListener('EDeleteClient', this.deleteRow);
+    dataEvents.removeListener('EEditClient', this.editClient);
+    dataEvents.removeListener('ECancelClient', this.cancelClient);
+    dataEvents.removeListener('EAddClient', this.addClient);
+    dataEvents.removeListener('ESaveClient', this.saveClient);
+  };
+  
+  changeSelectRow = (client) => {
+    this.setState({
+        selectClient: client,
+        modeDetails: DetailsTypes.Info
+    })
+  }
+
+  changeCompany = (data) => {
+    const { clients, company } = data;
+    this.setState({
+        company: company,
+        clients: [...clients]
+      })
+  }
+
   isEditing = false;
 
   deleteRow = (id) => {
-    if(this.state.modeDetails === DetailsTypes.Create){
-      confirm(`In the process of create new client!`)
-      return;
-    }
-
-    if(this.isEditing && this.state.modeDetails === DetailsTypes.Edit){
-      confirm(`Client with id:${this.state.selectedLastId} in the process of change!`)
-      return;
-    }
-
     this.setState({
       isConfirm: true,
       deleteRowId: id,
@@ -59,18 +93,11 @@ class Table extends PureComponent{
     })
   };
 
-  editClient = (id) => {
-    if(this.state.modeDetails === DetailsTypes.Create) {
-      confirm(`In the process of create new client!`)
-      return;
-    }
-
-    this.state.modeDetails = DetailsTypes.Edit;
-    this.state.selectedLastId = id;
-    if(!this.state.selectedIds.includes(id)){
-      this.state.selectedIds.push(id)
-    }
-    this.setState({...this.state})
+  editClient = (client) => {
+    this.setState({
+      selectClient: client,
+      modeDetails:  DetailsTypes.Edit
+    })
   };
 
   cancelClient = () => {
@@ -84,6 +111,11 @@ class Table extends PureComponent{
     const clients = [...this.state.clients];
     client.id = Math.max(...this.state.clients.map(p => p.id)) + 1;
     clients.push(client);
+
+    const data = Data.find(c => c.company === this.props.company);
+    if(data) 
+      data.clients.push(client);
+
     this.setState({
       clients: clients,
       modeDetails: null,  
@@ -104,13 +136,12 @@ class Table extends PureComponent{
   }
 
   showCreateDialog = () => {
-    if(this.isEditing && this.state.modeDetails === DetailsTypes.Edit){
-      confirm(`Client with id:${this.state.selectedLastId} in the process of change!`)
-      return;
+    if(this.state.modeDetails !== DetailsTypes.Create){
+      dataEvents.emit('EChangeSelectClient', new ClientModel().defaultValues());
+      this.setState({
+        modeDetails: DetailsTypes.Create
+      })
     }
-    this.setState({
-      modeDetails: DetailsTypes.Create
-    })
   }
 
   render() {
@@ -124,6 +155,7 @@ class Table extends PureComponent{
       {this.state.clients.map(c => <RowTable
           key={c.id}
           client={c}
+          selectClient={this.state.selectClient}
           modeDetails={this.state.modeDetails}
           isEditing={this.isEditing}>
         </RowTable>)}
@@ -137,7 +169,8 @@ class Table extends PureComponent{
     const details = ( 
       this.state.modeDetails ? 
           (<div className='row offset-2'>
-            <DetailsClient cbCancel={this.cancelClient} mode={this.state.modeDetails} cbChangeIsEditing={this.changeIsEditing} cbAdd={this.addClient} cbSave={this.saveClient} client={this.state.modeDetails ===  DetailsTypes.Create ? new ClientModel().defaultValues() : this.state.clients.find(p => p.id === this.state.selectedLastId)}></DetailsClient>
+            {/* <DetailsClient cbCancel={this.cancelClient} cbChangeIsEditing={this.changeIsEditing} cbAdd={this.addClient} cbSave={this.saveClient} mode={this.state.modeDetails}  client={this.state.modeDetails ===  DetailsTypes.Create ? new ClientModel().defaultValues() : this.state.clients.find(p => p.id === this.state.selectedLastId)}></DetailsClient> */}
+            <DetailsClient mode={this.state.modeDetails} client={this.state.modeDetails === DetailsTypes.Create ? new ClientModel().defaultValues() : this.state.selectClient}></DetailsClient>
           </div>)
       : null
     );
@@ -156,7 +189,7 @@ class Table extends PureComponent{
     return (
     <div>
       <h1 className='title'>
-        {this.props.company}
+        {this.state.company}
       </h1>
       {table}
       <button  onClick= {this.showCreateDialog}
@@ -175,9 +208,14 @@ class Table extends PureComponent{
   };
 };
 
+Table.defaultProps = {
+  clients: Data[0].clients,
+  company: Data[0].company
+};
+
 Table.propTypes = {
-  company: PropTypes.string.isRequired,
-  clients: PropTypes.array.isRequired,
+  company: PropTypes.string,
+  clients: PropTypes.array,
 };
 
 export default Table;

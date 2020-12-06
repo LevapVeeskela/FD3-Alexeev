@@ -6,7 +6,7 @@
   "scripts": {
     "start": "lite-server",
     "build": "webpack",
-    "dev": "webpack-dev-server --progress --colors"
+    "dev": "webpack-dev-server --open --progress --colors"
   },
   "author": "Alexeev Paul Vladimirovich",
   "license": "ISC",

@@ -20,8 +20,8 @@ class CompanyButtons extends PureComponent {
         className='btn-group'
         role='group'>
          <div>
-             {
-             this.state.data.map(d => (
+            {
+            this.state.data.map(d => (
                 <input type='button'
                         onClick= {this.changeCompany}
                         key={d.id}
