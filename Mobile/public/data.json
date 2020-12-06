@@ -1,0 +1,69 @@
+[{
+        "id": 1,
+        "company": "Velcom",
+        "clients": [{
+            "id": 1,
+            "surname": "Иванов",
+            "name": "Иван",
+            "patronymic": "Иванович",
+            "balance": 200,
+            "active": true
+        }, {
+            "id": 2,
+            "surname": "Сидоров",
+            "name": "Сидор",
+            "patronymic": "Сидорович",
+            "balance": 250,
+            "active": true
+        }, {
+            "id": 3,
+            "surname": "Петров",
+            "name": "Пётр",
+            "patronymic": "Петрович",
+            "balance": 180,
+            "active": true
+        }, {
+            "id": 4,
+            "surname": "Григорьев",
+            "name": "Григорий",
+            "patronymic": "Григорьевич",
+            "balance": -220,
+            "active": false
+        }]
+    },
+    {
+        "id": 2,
+        "company": "MTS",
+        "clients": [{
+            "id": 1,
+            "surname": "Сидоров",
+            "name": "Сидор",
+            "patronymic": "Сидорович",
+            "balance": -200,
+            "active": false
+
+        }, {
+            "id": 2,
+            "surname": "Иванов",
+            "name": "Иван",
+            "patronymic": "Иванович",
+            "balance": 210,
+            "active": true
+        }, {
+            "id": 3,
+            "surname": "Григорьев",
+            "name": "Григорий",
+            "patronymic": "Григорьевич",
+            "balance": 230,
+            "active": true
+        }, {
+
+            "id": 4,
+            "surname": "Петров",
+            "name": "Пётр",
+            "patronymic": "Петрович",
+            "balance": 150,
+            "active": true
+        }]
+    }
+]
