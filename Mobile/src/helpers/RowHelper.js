@@ -1,8 +1,8 @@
-export const SelectTextStatus =(isActive) => {
-    if(isActive) return 'active';
+export const SelectTextStatus =(balance) => {
+    if(balance > 0) return 'active';
     return 'blocked';
 }
-export const SelectClassStatus =(isActive) => {
-    if(isActive) return 'box-active';
+export const SelectClassStatus =(balance) => {
+    if(balance > 0) return 'box-active';
     return 'box-blocked';
 }

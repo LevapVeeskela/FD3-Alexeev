@@ -6,29 +6,25 @@
             "surname": "Иванов",
             "name": "Иван",
             "patronymic": "Иванович",
-            "balance": 200,
-            "active": true
+            "balance": 200
         }, {
             "id": 2,
             "surname": "Сидоров",
             "name": "Сидор",
             "patronymic": "Сидорович",
-            "balance": 250,
-            "active": true
+            "balance": 250
         }, {
             "id": 3,
             "surname": "Петров",
             "name": "Пётр",
             "patronymic": "Петрович",
-            "balance": 180,
-            "active": true
+            "balance": 180
         }, {
             "id": 4,
             "surname": "Григорьев",
             "name": "Григорий",
             "patronymic": "Григорьевич",
-            "balance": -220,
-            "active": false
+            "balance": -220
         }]
     },
     {
@@ -39,31 +35,27 @@
             "surname": "Сидоров",
             "name": "Сидор",
             "patronymic": "Сидорович",
-            "balance": -200,
-            "active": false
+            "balance": -200
 
         }, {
             "id": 2,
             "surname": "Иванов",
             "name": "Иван",
             "patronymic": "Иванович",
-            "balance": 210,
-            "active": true
+            "balance": 210
         }, {
             "id": 3,
             "surname": "Григорьев",
             "name": "Григорий",
             "patronymic": "Григорьевич",
-            "balance": 230,
-            "active": true
+            "balance": 230
         }, {
 
             "id": 4,
             "surname": "Петров",
             "name": "Пётр",
             "patronymic": "Петрович",
-            "balance": 150,
-            "active": true
+            "balance": 150
         }]
     }
 ]

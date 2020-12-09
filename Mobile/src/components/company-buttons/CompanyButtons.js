@@ -9,11 +9,9 @@ class CompanyButtons extends PureComponent {
         }
     }
 
-    changeCompany = (EO) => { 
-        companyEvents.emit('EChangeCompany', this.state.data.find(d => d.company === EO.target.value))
-    }
-
-    render(){
+    changeCompany = (EO) => {companyEvents.emit('EChangeCompany', this.state.data.find(d => d.company === EO.target.value))}
+    
+    render() {
         return  (<div 
         className='btn-group'
         role='group'>

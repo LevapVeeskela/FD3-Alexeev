@@ -14,7 +14,7 @@ class DetailsClient extends PureComponent{
     constructor(props){
         super(props)
         this.state={
-               ...props
+            ...props
         }
     }
 
@@ -82,7 +82,7 @@ class DetailsClient extends PureComponent{
         name: this.inputNameRef.value,
         patronymic: this.inputPatronymicRef.value,
         balance: Number(this.inputBalanceRef.value),
-        active: true
+        isShow: this.props.client.isShow
     });
 
     changeInnerValues = (store) => {

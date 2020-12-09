@@ -20,9 +20,7 @@ class RowTable extends PureComponent {
         dataEvents.emit('EEditClient', this.props.client)
     };
 
-    selectClient = () => {
-        dataEvents.emit('EChangeSelectClient', this.props.client)
-    }
+    selectClient = () => dataEvents.emit('EChangeSelectClient', this.props.client)
     
     render() {
         console.log('RowTable');
@@ -33,13 +31,12 @@ class RowTable extends PureComponent {
             <td>{this.props.client.name}</td>
             <td>{this.props.client.patronymic}</td>
             <td>{this.props.client.balance}</td>
-            <td className={SelectClassStatus(this.props.client.active)}>{SelectTextStatus(this.props.client.active)}</td>
+            <td className={SelectClassStatus(this.props.client.balance)}>{SelectTextStatus(this.props.client.balance)}</td>
             <td>
                 <button onClick={this.editClient} style={{border: 0, padding: 0}}> <i className='fab-custom edit fa fa-edit fa-3x' title='Editing client'></i></button>
                 <a onClick={this.deleteClient}><i className='fab-custom remove fa fa-trash fa-3x' title='Delete client'></i></a>
             </td>
-        </tr>
-        );
+        </tr>);
     };
 };
 

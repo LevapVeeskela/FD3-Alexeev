@@ -9,14 +9,11 @@ import {
     SelectConfirmIcon
 } from '../../helpers/ConfirmHelper';
 
-class Confirm extends React.Component {
+import { confirmEvents } from '../events';
 
-    actionConfirm = () => {
-        this.props.csActionConfirm(this.props.item);
-    };
-    cancelConfirm = () => {
-        this.props.csCancelConfirm();
-    };
+class Confirm extends React.PureComponent {
+    actionConfirm = () => confirmEvents.emit('EActionConfirm', this.props.item);
+    cancelConfirm = () => confirmEvents.emit('ECancelConfirm');
     render() {
         return <div className={`${SelectConfirmStyle(this.props.type)} confirmBox`} role='alert'>
             <div className='row'>

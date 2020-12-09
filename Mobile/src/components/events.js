@@ -3,11 +3,11 @@ import {
 } from 'events';
 
 const companyEvents = new EventEmitter();
-const filterEvents = new EventEmitter();
+const confirmEvents = new EventEmitter();
 const dataEvents = new EventEmitter();
 
 export {
     companyEvents,
-    filterEvents,
+    confirmEvents,
     dataEvents
 };
