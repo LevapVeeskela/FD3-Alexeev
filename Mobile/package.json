@@ -1,0 +1,42 @@
+{
+  "name": "ishop3",
+  "version": "1.0.0",
+  "description": "thord homework",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "lite-server",
+    "build": "webpack",
+    "dev": "webpack-dev-server --open --progress --colors"
+  },
+  "author": "Alexeev Paul Vladimirovich",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "3.2.0",
+    "lite-server": "^2.6.1",
+    "style-loader": "^2.0.0",
+    "svg-url-loader": "^7.1.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.13",
+    "bootstrap": "^4.0.0",
+    "events": "^3.2.0",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  }
+}
