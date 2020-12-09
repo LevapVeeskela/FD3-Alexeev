@@ -71,11 +71,13 @@ class DetailsClient extends PureComponent{
     }  
 
     save = () => {
-        dataEvents.emit('ESaveClient', this.getClientFromRefs());
+        const newClient = this.getClientFromRefs();
+        if (JSON.stringify(this.props.client) !== JSON.stringify(newClient))
+            dataEvents.emit('ESaveClient', newClient);
     }
 
     getClientFromRefs = () => ({
-        id: this.inputIdRef && this.inputIdRef.value,
+        id: (this.inputIdRef && this.inputIdRef.value) || this.state.client.id,
         surname: this.inputSurnameRef.value,
         name: this.inputNameRef.value,
         patronymic: this.inputPatronymicRef.value,

@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { filterEvents } from '../events';
 import Data from '../../../public/data.json';
 
 class FilterButtons extends PureComponent {

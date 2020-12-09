@@ -1,18 +1,16 @@
 import React, { PureComponent } from 'react';
 import { companyEvents } from '../events';
-import Data from '../../../public/data.json';
 
 class CompanyButtons extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            ...props,
-            data: [...Data]
+            ...props
         }
     }
 
     changeCompany = (EO) => { 
-        companyEvents.emit('EChangeCompany', Data.find(d => d.company === EO.target.value))
+        companyEvents.emit('EChangeCompany', this.state.data.find(d => d.company === EO.target.value))
     }
 
     render(){

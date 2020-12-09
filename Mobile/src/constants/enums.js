@@ -27,3 +27,9 @@ export const DetailsTypes = Object.freeze({
     Edit: 1 << 2
 });
 
+export const Filters = Object.freeze({
+    All: 1 << 0,
+    Active: 1 << 1,
+    Blocked: 1 << 2
+});
+

@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-    DetailsTypes
-} from '../../constants/enums'
-
+// helpers
 import {SelectClassStatus, SelectTextStatus} from '../../helpers/RowHelper'
-import './RowTable.css';
+
+// stream events
 import { dataEvents } from '../events';
+
+import './RowTable.css';
 
 class RowTable extends PureComponent {
     deleteClient = (EO) => {
@@ -52,7 +52,6 @@ RowTable.propTypes = {
         balance: PropTypes.number,
         active: PropTypes.bool
     }),
-    modeDetails: PropTypes.number,
 };
 
 export default RowTable;

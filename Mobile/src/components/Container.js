@@ -4,16 +4,11 @@ import React, {
 
 import Table from './table/Table';
 
-import {
-  companyEvents
-} from './events'
-import CompanyButtons from './company-buttons/CompanyButtons';
-
 class Container extends PureComponent {
   constructor(props){
     super(props)
     this.state = {
-        ...props
+        ...props,
     }
   }
   
@@ -21,7 +16,6 @@ class Container extends PureComponent {
     console.log('Conteiner')
     return (
       <div>
-          <CompanyButtons/>
           <Table/>
       </div>)
   }
