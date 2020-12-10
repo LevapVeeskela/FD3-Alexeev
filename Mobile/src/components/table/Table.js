@@ -1,5 +1,5 @@
 // node_modules
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 // components
@@ -9,18 +9,17 @@ import RowTable from './RowTable';
 import DetailsClient from '../details-clients/DetailsClient';
 import CompanyButtons from '../company-buttons/CompanyButtons';
 
-// enums
-import { Filters } from '../../constants/enums';
-
 // streams events
 import { dataEvents, companyEvents, confirmEvents } from '../events';
 
 // models
 import { ClientModel } from './models/ClientModel'; 
 
+// enums
 import {
   ConfirmTypes,
   DetailsTypes,
+  Filters
 } from '../../constants/enums';
 
 import Data from '../../../public/data.json';

@@ -11,16 +11,3 @@ export const TextModeInfo = function (mode, product) {
             return `Details product  ${name}`;
     }
 }
-
-export const CastToNeedType = function(value, name) {
-    switch(name){
-        case 'price':
-            return Number(value);
-        case 'count': 
-            return Number(value);
-        case 'colors':
-            return value && value.length > 0 ? value.split('\n') : [];
-        default: 
-            return value;
-    }
-}
