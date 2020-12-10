@@ -148,7 +148,8 @@ class Table extends PureComponent{
     this.setState({
       data: newData,
       clients: clients,
-      selectClient: client
+      selectClient: client,
+      modeDetails: null
     });
   };
 
