@@ -1,4 +1,4 @@
-export default class Product{
+export default class Product {
     constructor(private name: string, private scale: number) {
     }
 
