@@ -3,10 +3,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Table from '../src/components/table/Table';
+import Table from '../../src/components/table/Table';
 import {
     Filters
-} from '../src/constants/enums';
+} from '../../src/constants/enums';
 
 test('Сheck data of table after clicks by buttons of filters', () => {
     const component = renderer.create(<Table/> );
