@@ -1,0 +1,973 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Сheck data of table after clicks by buttons of filters 1`] = `
+<div>
+  <h1
+    className="title"
+  >
+    <div
+      className="btn-group float-left"
+      role="group"
+    >
+      <div>
+        <input
+          className="btn btn-success"
+          defaultValue="All"
+          name={1}
+          onClick={[Function]}
+          title="Will show all clients of current company"
+          type="button"
+        />
+        <input
+          className="btn btn-success"
+          defaultValue="Active"
+          name={2}
+          onClick={[Function]}
+          title="Will show active clients of current company only"
+          type="button"
+        />
+        <input
+          className="btn btn-success"
+          defaultValue="Blocked"
+          name={4}
+          onClick={[Function]}
+          title="Will show blocked clients of current company only"
+          type="button"
+        />
+      </div>
+    </div>
+    Velcom
+  </h1>
+  <table
+    className="clients"
+  >
+    <thead>
+      <tr>
+        <th>
+          ID
+        </th>
+        <th>
+          SURNAME
+        </th>
+        <th>
+          NAME
+        </th>
+        <th>
+          PATRONYMIC
+        </th>
+        <th>
+          BALANCE
+        </th>
+        <th>
+          ACTIVE
+        </th>
+        <th>
+          CONTROL
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        onClick={[Function]}
+      >
+        <td>
+          1
+        </td>
+        <td>
+          Иванов
+        </td>
+        <td>
+          Иван
+        </td>
+        <td>
+          Иванович
+        </td>
+        <td
+          name="balance"
+        >
+          200
+        </td>
+        <td
+          className="box-active"
+        >
+          active
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            style={
+              Object {
+                "border": 0,
+                "padding": 0,
+              }
+            }
+          >
+             
+            <i
+              className="fab-custom edit fa fa-edit fa-3x"
+              title="Editing client"
+            />
+          </button>
+          <a
+            onClick={[Function]}
+          >
+            <i
+              className="fab-custom remove fa fa-trash fa-3x"
+              title="Delete client"
+            />
+          </a>
+        </td>
+      </tr>
+      <tr
+        onClick={[Function]}
+      >
+        <td>
+          2
+        </td>
+        <td>
+          Сидоров
+        </td>
+        <td>
+          Сидор
+        </td>
+        <td>
+          Сидорович
+        </td>
+        <td
+          name="balance"
+        >
+          250
+        </td>
+        <td
+          className="box-active"
+        >
+          active
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            style={
+              Object {
+                "border": 0,
+                "padding": 0,
+              }
+            }
+          >
+             
+            <i
+              className="fab-custom edit fa fa-edit fa-3x"
+              title="Editing client"
+            />
+          </button>
+          <a
+            onClick={[Function]}
+          >
+            <i
+              className="fab-custom remove fa fa-trash fa-3x"
+              title="Delete client"
+            />
+          </a>
+        </td>
+      </tr>
+      <tr
+        onClick={[Function]}
+      >
+        <td>
+          3
+        </td>
+        <td>
+          Петров
+        </td>
+        <td>
+          Пётр
+        </td>
+        <td>
+          Петрович
+        </td>
+        <td
+          name="balance"
+        >
+          180
+        </td>
+        <td
+          className="box-active"
+        >
+          active
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            style={
+              Object {
+                "border": 0,
+                "padding": 0,
+              }
+            }
+          >
+             
+            <i
+              className="fab-custom edit fa fa-edit fa-3x"
+              title="Editing client"
+            />
+          </button>
+          <a
+            onClick={[Function]}
+          >
+            <i
+              className="fab-custom remove fa fa-trash fa-3x"
+              title="Delete client"
+            />
+          </a>
+        </td>
+      </tr>
+      <tr
+        onClick={[Function]}
+      >
+        <td>
+          4
+        </td>
+        <td>
+          Григорьев
+        </td>
+        <td>
+          Григорий
+        </td>
+        <td>
+          Григорьевич
+        </td>
+        <td
+          name="balance"
+        >
+          -220
+        </td>
+        <td
+          className="box-blocked"
+        >
+          blocked
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            style={
+              Object {
+                "border": 0,
+                "padding": 0,
+              }
+            }
+          >
+             
+            <i
+              className="fab-custom edit fa fa-edit fa-3x"
+              title="Editing client"
+            />
+          </button>
+          <a
+            onClick={[Function]}
+          >
+            <i
+              className="fab-custom remove fa fa-trash fa-3x"
+              title="Delete client"
+            />
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button
+    className="btn btn-success"
+    onClick={[Function]}
+    title="Add new client"
+  >
+    <i
+      className="fa fa-plus"
+    />
+    <span
+      style={
+        Object {
+          "marginLeft": "10px",
+        }
+      }
+    >
+      Add new client
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Сheck data of table after clicks by buttons of filters 2`] = `
+<div>
+  <h1
+    className="title"
+  >
+    <div
+      className="btn-group float-left"
+      role="group"
+    >
+      <div>
+        <input
+          className="btn btn-success"
+          defaultValue="All"
+          name={1}
+          onClick={[Function]}
+          title="Will show all clients of current company"
+          type="button"
+        />
+        <input
+          className="btn btn-success"
+          defaultValue="Active"
+          name={2}
+          onClick={[Function]}
+          title="Will show active clients of current company only"
+          type="button"
+        />
+        <input
+          className="btn btn-success"
+          defaultValue="Blocked"
+          name={4}
+          onClick={[Function]}
+          title="Will show blocked clients of current company only"
+          type="button"
+        />
+      </div>
+    </div>
+    Velcom
+  </h1>
+  <table
+    className="clients"
+  >
+    <thead>
+      <tr>
+        <th>
+          ID
+        </th>
+        <th>
+          SURNAME
+        </th>
+        <th>
+          NAME
+        </th>
+        <th>
+          PATRONYMIC
+        </th>
+        <th>
+          BALANCE
+        </th>
+        <th>
+          ACTIVE
+        </th>
+        <th>
+          CONTROL
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        onClick={[Function]}
+      >
+        <td>
+          1
+        </td>
+        <td>
+          Иванов
+        </td>
+        <td>
+          Иван
+        </td>
+        <td>
+          Иванович
+        </td>
+        <td
+          name="balance"
+        >
+          200
+        </td>
+        <td
+          className="box-active"
+        >
+          active
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            style={
+              Object {
+                "border": 0,
+                "padding": 0,
+              }
+            }
+          >
+             
+            <i
+              className="fab-custom edit fa fa-edit fa-3x"
+              title="Editing client"
+            />
+          </button>
+          <a
+            onClick={[Function]}
+          >
+            <i
+              className="fab-custom remove fa fa-trash fa-3x"
+              title="Delete client"
+            />
+          </a>
+        </td>
+      </tr>
+      <tr
+        onClick={[Function]}
+      >
+        <td>
+          2
+        </td>
+        <td>
+          Сидоров
+        </td>
+        <td>
+          Сидор
+        </td>
+        <td>
+          Сидорович
+        </td>
+        <td
+          name="balance"
+        >
+          250
+        </td>
+        <td
+          className="box-active"
+        >
+          active
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            style={
+              Object {
+                "border": 0,
+                "padding": 0,
+              }
+            }
+          >
+             
+            <i
+              className="fab-custom edit fa fa-edit fa-3x"
+              title="Editing client"
+            />
+          </button>
+          <a
+            onClick={[Function]}
+          >
+            <i
+              className="fab-custom remove fa fa-trash fa-3x"
+              title="Delete client"
+            />
+          </a>
+        </td>
+      </tr>
+      <tr
+        onClick={[Function]}
+      >
+        <td>
+          3
+        </td>
+        <td>
+          Петров
+        </td>
+        <td>
+          Пётр
+        </td>
+        <td>
+          Петрович
+        </td>
+        <td
+          name="balance"
+        >
+          180
+        </td>
+        <td
+          className="box-active"
+        >
+          active
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            style={
+              Object {
+                "border": 0,
+                "padding": 0,
+              }
+            }
+          >
+             
+            <i
+              className="fab-custom edit fa fa-edit fa-3x"
+              title="Editing client"
+            />
+          </button>
+          <a
+            onClick={[Function]}
+          >
+            <i
+              className="fab-custom remove fa fa-trash fa-3x"
+              title="Delete client"
+            />
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button
+    className="btn btn-success"
+    onClick={[Function]}
+    title="Add new client"
+  >
+    <i
+      className="fa fa-plus"
+    />
+    <span
+      style={
+        Object {
+          "marginLeft": "10px",
+        }
+      }
+    >
+      Add new client
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Сheck data of table after clicks by buttons of filters 3`] = `
+<div>
+  <h1
+    className="title"
+  >
+    <div
+      className="btn-group float-left"
+      role="group"
+    >
+      <div>
+        <input
+          className="btn btn-success"
+          defaultValue="All"
+          name={1}
+          onClick={[Function]}
+          title="Will show all clients of current company"
+          type="button"
+        />
+        <input
+          className="btn btn-success"
+          defaultValue="Active"
+          name={2}
+          onClick={[Function]}
+          title="Will show active clients of current company only"
+          type="button"
+        />
+        <input
+          className="btn btn-success"
+          defaultValue="Blocked"
+          name={4}
+          onClick={[Function]}
+          title="Will show blocked clients of current company only"
+          type="button"
+        />
+      </div>
+    </div>
+    Velcom
+  </h1>
+  <table
+    className="clients"
+  >
+    <thead>
+      <tr>
+        <th>
+          ID
+        </th>
+        <th>
+          SURNAME
+        </th>
+        <th>
+          NAME
+        </th>
+        <th>
+          PATRONYMIC
+        </th>
+        <th>
+          BALANCE
+        </th>
+        <th>
+          ACTIVE
+        </th>
+        <th>
+          CONTROL
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        onClick={[Function]}
+      >
+        <td>
+          4
+        </td>
+        <td>
+          Григорьев
+        </td>
+        <td>
+          Григорий
+        </td>
+        <td>
+          Григорьевич
+        </td>
+        <td
+          name="balance"
+        >
+          -220
+        </td>
+        <td
+          className="box-blocked"
+        >
+          blocked
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            style={
+              Object {
+                "border": 0,
+                "padding": 0,
+              }
+            }
+          >
+             
+            <i
+              className="fab-custom edit fa fa-edit fa-3x"
+              title="Editing client"
+            />
+          </button>
+          <a
+            onClick={[Function]}
+          >
+            <i
+              className="fab-custom remove fa fa-trash fa-3x"
+              title="Delete client"
+            />
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button
+    className="btn btn-success"
+    onClick={[Function]}
+    title="Add new client"
+  >
+    <i
+      className="fa fa-plus"
+    />
+    <span
+      style={
+        Object {
+          "marginLeft": "10px",
+        }
+      }
+    >
+      Add new client
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Сheck data of table after clicks by buttons of filters 4`] = `
+<div>
+  <h1
+    className="title"
+  >
+    <div
+      className="btn-group float-left"
+      role="group"
+    >
+      <div>
+        <input
+          className="btn btn-success"
+          defaultValue="All"
+          name={1}
+          onClick={[Function]}
+          title="Will show all clients of current company"
+          type="button"
+        />
+        <input
+          className="btn btn-success"
+          defaultValue="Active"
+          name={2}
+          onClick={[Function]}
+          title="Will show active clients of current company only"
+          type="button"
+        />
+        <input
+          className="btn btn-success"
+          defaultValue="Blocked"
+          name={4}
+          onClick={[Function]}
+          title="Will show blocked clients of current company only"
+          type="button"
+        />
+      </div>
+    </div>
+    Velcom
+  </h1>
+  <table
+    className="clients"
+  >
+    <thead>
+      <tr>
+        <th>
+          ID
+        </th>
+        <th>
+          SURNAME
+        </th>
+        <th>
+          NAME
+        </th>
+        <th>
+          PATRONYMIC
+        </th>
+        <th>
+          BALANCE
+        </th>
+        <th>
+          ACTIVE
+        </th>
+        <th>
+          CONTROL
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        onClick={[Function]}
+      >
+        <td>
+          1
+        </td>
+        <td>
+          Иванов
+        </td>
+        <td>
+          Иван
+        </td>
+        <td>
+          Иванович
+        </td>
+        <td
+          name="balance"
+        >
+          200
+        </td>
+        <td
+          className="box-active"
+        >
+          active
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            style={
+              Object {
+                "border": 0,
+                "padding": 0,
+              }
+            }
+          >
+             
+            <i
+              className="fab-custom edit fa fa-edit fa-3x"
+              title="Editing client"
+            />
+          </button>
+          <a
+            onClick={[Function]}
+          >
+            <i
+              className="fab-custom remove fa fa-trash fa-3x"
+              title="Delete client"
+            />
+          </a>
+        </td>
+      </tr>
+      <tr
+        onClick={[Function]}
+      >
+        <td>
+          2
+        </td>
+        <td>
+          Сидоров
+        </td>
+        <td>
+          Сидор
+        </td>
+        <td>
+          Сидорович
+        </td>
+        <td
+          name="balance"
+        >
+          250
+        </td>
+        <td
+          className="box-active"
+        >
+          active
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            style={
+              Object {
+                "border": 0,
+                "padding": 0,
+              }
+            }
+          >
+             
+            <i
+              className="fab-custom edit fa fa-edit fa-3x"
+              title="Editing client"
+            />
+          </button>
+          <a
+            onClick={[Function]}
+          >
+            <i
+              className="fab-custom remove fa fa-trash fa-3x"
+              title="Delete client"
+            />
+          </a>
+        </td>
+      </tr>
+      <tr
+        onClick={[Function]}
+      >
+        <td>
+          3
+        </td>
+        <td>
+          Петров
+        </td>
+        <td>
+          Пётр
+        </td>
+        <td>
+          Петрович
+        </td>
+        <td
+          name="balance"
+        >
+          180
+        </td>
+        <td
+          className="box-active"
+        >
+          active
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            style={
+              Object {
+                "border": 0,
+                "padding": 0,
+              }
+            }
+          >
+             
+            <i
+              className="fab-custom edit fa fa-edit fa-3x"
+              title="Editing client"
+            />
+          </button>
+          <a
+            onClick={[Function]}
+          >
+            <i
+              className="fab-custom remove fa fa-trash fa-3x"
+              title="Delete client"
+            />
+          </a>
+        </td>
+      </tr>
+      <tr
+        onClick={[Function]}
+      >
+        <td>
+          4
+        </td>
+        <td>
+          Григорьев
+        </td>
+        <td>
+          Григорий
+        </td>
+        <td>
+          Григорьевич
+        </td>
+        <td
+          name="balance"
+        >
+          -220
+        </td>
+        <td
+          className="box-blocked"
+        >
+          blocked
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            style={
+              Object {
+                "border": 0,
+                "padding": 0,
+              }
+            }
+          >
+             
+            <i
+              className="fab-custom edit fa fa-edit fa-3x"
+              title="Editing client"
+            />
+          </button>
+          <a
+            onClick={[Function]}
+          >
+            <i
+              className="fab-custom remove fa fa-trash fa-3x"
+              title="Delete client"
+            />
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button
+    className="btn btn-success"
+    onClick={[Function]}
+    title="Add new client"
+  >
+    <i
+      className="fa fa-plus"
+    />
+    <span
+      style={
+        Object {
+          "marginLeft": "10px",
+        }
+      }
+    >
+      Add new client
+    </span>
+  </button>
+</div>
+`;
