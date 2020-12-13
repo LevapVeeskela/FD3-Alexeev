@@ -1,4 +1,4 @@
-import {SelectTextStatus, SelectClassStatus} from '../src/helpers/RowHelper';
+import {SelectTextStatus, SelectClassStatus} from '../../src/helpers/RowHelper';
 
 test('check SelectTextStatus and SelectTextStatus', () => {
     const zeroBalance = 0;
