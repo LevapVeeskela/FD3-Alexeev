@@ -1,7 +1,7 @@
-import IScalable from '../interfaces/IScalable';
 import IStorageEngine from '../interfaces/IStorageEngine';
+import Product from '../models/Product';
 
-export default class ScalesStorageEngineArray<Tin extends IScalable> implements IStorageEngine<Tin> {
+export default class ScalesStorageEngineArray<Tin extends Product> implements IStorageEngine<Tin> {
     
     constructor(private store: Tin[] = []){}
     
