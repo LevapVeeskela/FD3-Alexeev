@@ -1,9 +1,9 @@
-import IScalable from './interfaces/IScalable';
 import Product from './models/Product';
 import Scale from './Scale';
 import ScalesStorageEngineArray from './stores/ScalesStorageEngineArray';
 import ScalesStorageEngineLocalStorage from './stores/ScalesStorageEngineLocalStorage';
 import Factory from './factory';
+
 const prodcts: Product[] = [
     new Product('Gala', 100),
     new Product('Fuji', 303), 
@@ -12,8 +12,8 @@ const prodcts: Product[] = [
     new Product('Среднеранние', 400)
 ];
 
-const firstScale: Scale<ScalesStorageEngineArray<IScalable>> = new Scale(Factory(ScalesStorageEngineArray));
-const secondScale: Scale<ScalesStorageEngineLocalStorage<IScalable>> = new Scale(Factory(ScalesStorageEngineLocalStorage));
+const firstScale: Scale<ScalesStorageEngineArray<Product>> = new Scale(Factory(ScalesStorageEngineArray));
+const secondScale: Scale<ScalesStorageEngineLocalStorage> = new Scale(Factory(ScalesStorageEngineLocalStorage));
 
 firstScale.add(prodcts);
 firstScale.add(new Product('Штамбовые', 210));
