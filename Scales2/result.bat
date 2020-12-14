@@ -2,8 +2,7 @@
 echo START run script
 echo.
 echo.
-set currentPath=%cd%
-call tsc "%currentPath%\app.ts"
+call tsc 
 echo Translating ts into js finished! I get and to print the execution result!
 echo. 
 node app
