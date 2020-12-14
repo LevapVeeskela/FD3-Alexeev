@@ -152,7 +152,6 @@ console.log("Total scales: " + secondScale.getSumScale() + ";");
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Product_1 = __webpack_require__(0);
 var Scale = /** @class */ (function () {
     function Scale(store) {
         this.store = store;
@@ -168,21 +167,16 @@ var Scale = /** @class */ (function () {
     Scale.prototype.getSumScale = function () {
         var sum = 0;
         for (var i = 0; i < this.store.getCount(); i++) {
-            sum += this.convertToProduct(this.store.getItem(i)).scale;
+            sum += this.store.getItem(i).scale;
         }
         return sum;
     };
     Scale.prototype.getNameList = function () {
         var listNames = [];
         for (var i = 0; i < this.store.getCount(); i++) {
-            listNames.push(this.convertToProduct(this.store.getItem(i)).name);
+            listNames.push(this.store.getItem(i).name);
         }
         return listNames;
-    };
-    Scale.prototype.convertToProduct = function (value) {
-        var prod = new Product_1.default();
-        Object.assign(prod, value);
-        return prod;
     };
     return Scale;
 }());
@@ -222,7 +216,7 @@ exports.default = ScalesStorageEngineArray;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-// import Factory from '../factory';
+var Product_1 = __webpack_require__(0);
 var ScalesStorageEngineArray = /** @class */ (function () {
     function ScalesStorageEngineArray(store) {
         if (store === void 0) { store = localStorage; }
@@ -234,15 +228,16 @@ var ScalesStorageEngineArray = /** @class */ (function () {
     };
     ScalesStorageEngineArray.prototype.getItem = function (key) {
         if (typeof (key) === 'number') {
-            return this.convertToTin(this.store.getItem(this.store.key(key)));
+            return this.convertToProduct(this.store.getItem(this.store.key(key)));
         }
-        return this.convertToTin(this.store.getItem(key));
+        return this.convertToProduct(this.store.getItem(key));
     };
     ScalesStorageEngineArray.prototype.getCount = function () {
         return this.store.length;
     };
-    ScalesStorageEngineArray.prototype.convertToTin = function (value) {
-        return JSON.parse(value);
+    ScalesStorageEngineArray.prototype.convertToProduct = function (value) {
+        var _a = JSON.parse(value), _name = _a._name, _scale = _a._scale;
+        return new Product_1.default(_name, _scale);
     };
     return ScalesStorageEngineArray;
 }());

@@ -1,6 +1,4 @@
-import IScalable from '../interfaces/IScalable';
-
-export default class Product implements IScalable {
+export default class Product{
     constructor(private _name: string = '', private _scale: number = 0) {
     }
 
