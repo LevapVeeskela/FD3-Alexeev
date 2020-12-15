@@ -1,0 +1,13 @@
+<!-- <div>
+  <input type="number" #apples (input)="false">
+ <div>
+  {{apples.value|numword:'яблоко':'яблока':'яблок'}}
+ </div> 
+</div> -->
+
+<div>
+  <input type="number" [(ngModel)]="count">
+ <div>
+    [count|numword:'яблоко':'яблока':'яблок'] <!--changed symbol interpolation for this component-->
+ </div> 
+</div>
