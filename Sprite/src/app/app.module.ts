@@ -3,12 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { NumwordPipe } from './pipes/numword.pipe';
+import { SpriteComponent } from './components/sprite/sprite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NumwordPipe
+    SpriteComponent
   ],
   imports: [
     BrowserModule,
