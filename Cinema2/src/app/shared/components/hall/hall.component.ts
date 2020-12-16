@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TicketsService } from 'src/app/tickets.service';
+import { TicketsService } from 'src/app/shared/services/tickets.service';
 import { SeatModel } from '../../models/Seat.model';
 
 @Component({
@@ -10,15 +10,18 @@ import { SeatModel } from '../../models/Seat.model';
 export class HallComponent implements OnInit {
   title = 'Veeskela Cinema Project';
   seats: any[] = [];
-  
+
   constructor(private ticketsService: TicketsService) { }
 
   ngOnInit(): void {
-    this.seats = this.ticketsService.getAllSeats().reverse();
+    this.ticketsService.getSeatsObservable().subscribe((seats: any[]) => {
+      this.seats = seats.reverse();
+      console.log('HallComponent this.ticketsService.getSeatsObservable')
+    })
   }
 
-  sellTicket(seat: SeatModel){
-    if(confirm(`Do you will sell it seat : row-${seat.row} number-${seat.numberSeat}?`)){
+  sellTicket(seat: SeatModel) {
+    if (confirm(`Do you will sell it seat : row-${seat.row} number-${seat.numberSeat}?`)) {
       this.ticketsService.sellTicket(seat);
     }
   }
@@ -31,10 +34,14 @@ export class HallComponent implements OnInit {
       'background-image': `url(${url})`,
       'width': `130px`,
       'height': `130px`,
-    } 
+    }
   }
 
-  getTitle(row: number, numberSeat: number): string{
+  getTitle(row: number, numberSeat: number): string {
     return `Row ${row + 1}\nSeat ${numberSeat + 1}`
+  }
+
+  isShow(v: any) {
+    return (Array.isArray(v) && v.length > 0) || !!v;
   }
 }

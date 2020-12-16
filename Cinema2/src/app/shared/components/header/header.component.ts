@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TicketsService } from 'src/app/tickets.service';
+import { TicketsService } from 'src/app/shared/services/tickets.service';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +7,8 @@ import { TicketsService } from 'src/app/tickets.service';
   styleUrls: ['header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private ticketsService: TicketsService) { }
+  constructor(private ticketsService: TicketsService) {
+  }
 
   ngOnInit(): void {
   }
@@ -18,6 +18,6 @@ export class HeaderComponent implements OnInit {
   }
 
   getCountNotFreeSeats(): number {
-    return this.ticketsService.getCountNotFreeSeats();
+    return this.ticketsService.getCountNotFreeSeats();;
   }
 }

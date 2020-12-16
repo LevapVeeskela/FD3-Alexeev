@@ -2,18 +2,21 @@
   <h1>
     <span>{{title}}</span>
   </h1>
-  <div *ngFor="let row of seats ; let i = index" style="font-size: 1.2em; font-weight: 700" class="row justify-content-center align-items-center">
-    <div style="margin-right: 20px;">{{row[0].row + 1}} row </div>
-    <div *ngFor="let seat of row; let j = index">
-      <div class="row" [ngbTooltip]="getTitle(row[0].row, seat.numberSeat)">
-        <div class="col-2">
-          <div class="row" [ngStyle]="getSeatStyle(seat)" (click)="seat.isFree && sellTicket(seat)"  >
-            <span class="offset-6"
-              style="color: #ffffff; position: absolute; top: 50px; left: 45px;">{{seat.numberSeat + 1}}</span>
+  <!-- <div *ngIf="isShow(seats)"> -->
+    <div  *ngFor="let row of seats ; let i = index" style="font-size: 1.2em; font-weight: 700" class="row justify-content-center align-items-center">
+      <div style="margin-right: 20px;" *ngIf="isShow(row)">{{row[0].row + 1}} row </div>
+      <div *ngFor="let seat of row; let j = index">
+        <div class="row" [ngbTooltip]="getTitle(row[0].row, seat.numberSeat)">
+          <div class="col-2">
+            <div class="row" [ngStyle]="getSeatStyle(seat)" (click)="seat.isFree && sellTicket(seat)">
+              <span class="offset-6"
+                style="color: #ffffff; position: absolute; top: 50px; left: 45px;">{{seat.numberSeat + 1}}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-</div>
-</div>
+  </div>
+  </div>
+
+<!-- </div> -->
 
