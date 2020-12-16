@@ -1,0 +1,16 @@
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">{{title}}</span>
+  </div>
+  <input type="number" [(ngModel)]="count" class="form-control" placeholder="Enter count tickets..." min="0"
+    aria-label="Count tickets" aria-describedby="basic-addon1">
+  <div class="input-group-append">
+    <input type="button" class="btn btn-success" value="Buy" (click)="buyTickets()"/>
+  </div>
+ 
+</div>
+
+<div class="row" style="position: absolute;  left: 40%;">
+  <ngb-alert type='success' *ngIf="isAlertClosed" (closed)="isAlertClosed = false; textTooltip=''">{{this.textTooltip}}
+  </ngb-alert>
+</div>
