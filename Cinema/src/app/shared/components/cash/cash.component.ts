@@ -26,5 +26,11 @@ export class CashComponent implements OnInit {
       this.textTooltip = `You bought in ${this.title}: ${Array.isArray(result) ? `${result.length} tickets` : `seat${result.numberSeat} in ${result.row} row`}`
     }
   }
+  getIsDisabledBuy(): boolean{
+    return this.ticketsService.getCountFreeSeats() === 0;
+  }
+  getCountFreeSeats(): number{
+    return this.ticketsService.getCountFreeSeats();
+  }
 
 }
