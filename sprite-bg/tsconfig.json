@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": false, // Whether access modifiers such as private/protected/readonly are honored when assigning a binding expression to an @Input(). If disabled, the access modifiers of the @Input are ignored; only the type is checked.
+    "strictTemplates": false, // When true, enables strict template type checking. Strict mode is only available when using Ivy (Angular version 9 and later).
+    "strictNullChecks": false
+  }
+}
