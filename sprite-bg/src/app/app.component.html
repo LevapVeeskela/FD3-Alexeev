@@ -1,0 +1,16 @@
+<!-- <app-sprite 
+    [url]="currentSprite.url" 
+    [offset-x]="currentSprite.offsetX" 
+    [offset-y]="currentSprite.offsetY"
+    [width]="currentSprite.width"
+    [height]="currentSprite.height"
+    (next)="nextSprite()"></app-sprite> -->
+<div 
+    sprite-bg 
+    [sprite-url]="currentSprite.url" 
+    [sprite-offset-x]="currentSprite.offsetX"
+    [sprite-offset-y]="currentSprite.offsetY" 
+    [sprite-width]="currentSprite.width" 
+    [sprite-height]="currentSprite.height"
+    (click)="nextSprite()" >
+</div>
