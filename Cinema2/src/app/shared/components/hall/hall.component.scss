@@ -1,0 +1,36 @@
+h1 {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-size: 3em;
+    text-align: center;
+    color: #fff;
+    -webkit-animation: 3s fade;
+    animation: 3s fade;
+    span {
+      display: inline-block;
+      position: relative;
+      padding: .5em 1em;
+      &:before {
+        display: block;
+        content: '';
+        width: 110%;
+        margin-left: -5%;
+        margin-bottom: 5%;
+        border-top: 1px solid #fff;
+        -webkit-animation: 2.5s draw;
+        animation: 2.5s draw;
+      }
+      &:after {
+        display: block;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        border-bottom: 1px solid #fff;
+        -webkit-animation: 2.5s draw-bottom;
+        animation: 2.5s draw-bottom;
+      }
+    }
+  }
