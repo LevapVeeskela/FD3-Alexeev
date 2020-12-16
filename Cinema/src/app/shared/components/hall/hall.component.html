@@ -9,7 +9,7 @@
         <div class="col-2">
           <div class="row" [ngStyle]="getSeatStyle(seat)" (click)="seat.isFree && sellTicket(seat)"  >
             <span class="offset-6"
-              style="color: #ffffff; position: absolute; top: 50px; left: 45px;">{{seat.numberSeat}}</span>
+              style="color: #ffffff; position: absolute; top: 50px; left: 45px;">{{seat.numberSeat + 1}}</span>
           </div>
         </div>
       </div>
