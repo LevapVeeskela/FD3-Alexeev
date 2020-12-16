@@ -35,6 +35,6 @@ export class HallComponent implements OnInit {
   }
 
   getTitle(row: number, numberSeat: number): string{
-    return `Row ${row + 1}\nSeat ${numberSeat}`
+    return `Row ${row + 1}\nSeat ${numberSeat + 1}`
   }
 }
