@@ -1,0 +1,27 @@
+  <div class="row" style="position: sticky; top: 0; z-index: 1000;">
+    <div class="col-2">
+      <button type="button" class="btn btn-info">
+        Free seats <span class="badge badge-light">{{getCountFreeSeats()}}</span>
+        <span class="sr-only">Free seats:</span>
+      </button>
+    </div>
+  
+    <div class="col-8">
+      <div class="row">
+        <div class="col-6">
+          <app-cash [title]="'Full-time cash desk'"></app-cash>
+  
+        </div>
+        <div class="col-6">
+          <app-cash [title]="'Internet cash register'"></app-cash>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-2">
+      <button type="button" class="btn btn-info float-right">
+        Not free seats: <span class="badge badge-light">{{getCountNotFreeSeats()}}</span>
+        <span class="sr-only">Not free seats:</span>
+      </button>
+    </div>
+  </div>
