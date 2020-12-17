@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ILowSeat } from '../interfaces/ILowSeat';
 import { SeatModel } from '../models/Seat.model';
 import { TicketConstants } from '../constants/constants';
-import { Observable, of , Subscribable, Operator} from "rxjs";
+import { Observable } from "rxjs";
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,6 @@ export class TicketsService {
   private allSeatsSubject: Subject<any[][]> = new Subject<any[][]>();
   constructor() {
     this.allSeats = this.generateSpectatorSeats(TicketConstants.COUNT_ROW, TicketConstants.COUNT_SEATS_IN_ROW);
-    this.allSeatsSubject.next(this.allSeats);
   }
 
   private generateSpectatorSeats(countRow: number, countSeatsInRow: number): any[][] {
@@ -61,11 +60,11 @@ export class TicketsService {
 
   getSeatsSubject(): Subject<any[][]> {
     return this.allSeatsSubject;
-  }  
-  
+  }
+
   getSeatsObservable(): Observable<any[][]> {
     return new Observable<any[][]>(observer => {
       observer.next(this.allSeats);
-    });  // it is same that of(this.allSeats) 
+    });  // it is same that of(this.allSeats) or from([this.allSeats])
   }
 }
