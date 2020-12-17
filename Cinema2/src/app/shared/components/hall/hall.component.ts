@@ -19,12 +19,9 @@ export class HallComponent implements OnInit {
   ngOnInit(): void {
     this.ticketsService.getSeatsObservable().subscribe({
       next: (seats: any[][]) => {
-        console.log(seats)
         this.seats = seats.reverse();
-        console.log('HallComponent this.ticketsService.getSeatsObservable next')
       },
       error: error => console.error(error),
-      complete: () => console.log('HallComponent this.ticketsService.getSeatsObservable() completed.')
     });
   }
 
