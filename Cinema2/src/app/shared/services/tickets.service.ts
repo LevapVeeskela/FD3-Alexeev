@@ -2,26 +2,18 @@ import { Injectable } from '@angular/core';
 import { ILowSeat } from '../interfaces/ILowSeat';
 import { SeatModel } from '../models/Seat.model';
 import { TicketConstants } from '../constants/constants';
-import { Observable, of } from "rxjs";
+import { Observable, of , Subscribable, Operator} from "rxjs";
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketsService {
-  private seatsObservable$: Observable<any[][]>;
   private allSeats: any[][] = [];
-
+  private allSeatsSubject: Subject<any[][]> = new Subject<any[][]>();
   constructor() {
     this.allSeats = this.generateSpectatorSeats(TicketConstants.COUNT_ROW, TicketConstants.COUNT_SEATS_IN_ROW);
-    this.seatsObservable$ = new Observable(observer => {
-      observer.next(this.allSeats);
-    }); // it is same that of(this.allSeats) 
-
-    // this.seatsObservable$.subscribe({
-    //   next: value => console.log(value),
-    //   error: error => console.error(error),
-    //   complete: () => console.log('Complete. Cookie time.')
-    // });  // this new syntaxes
+    this.allSeatsSubject.next(this.allSeats);
   }
 
   private generateSpectatorSeats(countRow: number, countSeatsInRow: number): any[][] {
@@ -50,7 +42,6 @@ export class TicketsService {
           break;
         }
       }
-
       return tickets;
     }
     return undefined;
@@ -64,11 +55,17 @@ export class TicketsService {
     return this.allSeats.flat().filter((v: SeatModel) => !v.isFree).length;
   }
 
-  getAllSeats(): any[] {
+  getAllSeats(): any[][] {
     return this.allSeats;
   }
 
+  getSeatsSubject(): Subject<any[][]> {
+    return this.allSeatsSubject;
+  }  
+  
   getSeatsObservable(): Observable<any[][]> {
-    return this.seatsObservable$;
+    return new Observable<any[][]>(observer => {
+      observer.next(this.allSeats);
+    });  // it is same that of(this.allSeats) 
   }
 }

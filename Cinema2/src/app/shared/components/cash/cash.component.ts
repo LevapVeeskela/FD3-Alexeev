@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TicketsService } from 'src/app/shared/services/tickets.service';
 
 
@@ -13,8 +15,9 @@ export class CashComponent implements OnInit {
   count: number = 0;
   isAlertClosed: boolean = false;
   textTooltip: string = '';
-
+  seatsSubject: Subject<any[][]>;
   constructor(private ticketsService: TicketsService) { 
+    this.seatsSubject = ticketsService.getSeatsSubject();
   }
 
   ngOnInit(): void {
@@ -33,6 +36,7 @@ export class CashComponent implements OnInit {
             this.textTooltip = `You bought in ${this.title}: ${Array.isArray(result) ? `${result.length} tickets` : `seat${result.numberSeat} in ${result.row} row`}`
         } 
     }
+    this.seatsSubject.next(this.ticketsService.getAllSeats());
     this.count = 0;
   }
 

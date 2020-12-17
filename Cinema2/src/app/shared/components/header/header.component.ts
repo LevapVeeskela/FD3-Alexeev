@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { TicketsService } from 'src/app/shared/services/tickets.service';
 
 @Component({
@@ -7,10 +8,16 @@ import { TicketsService } from 'src/app/shared/services/tickets.service';
   styleUrls: ['header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private ticketsService: TicketsService) {
+  seatsSubject: Subject<any[][]>;
+  constructor(private ticketsService: TicketsService) { 
+    this.seatsSubject = ticketsService.getSeatsSubject();
   }
 
   ngOnInit(): void {
+    this.seatsSubject.subscribe({ next: (seats:any[][]) => {
+      let count = this.getCountFreeSeats();
+      alert(count > 0 ? `Dear visitors ${this.getCountFreeSeats()} tickets left!` : 'All tickets are sold out!');
+    }});
   }
 
   getCountFreeSeats(): number {
