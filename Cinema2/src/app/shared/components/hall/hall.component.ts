@@ -26,7 +26,7 @@ export class HallComponent implements OnInit {
   }
 
   sellTicket(seat: SeatModel) {
-    if (confirm(`Do you will sell it seat : row-${seat.row} number-${seat.numberSeat}?`)) {
+    if (confirm(`Do you will sell it seat : row-${seat.row + 1} number-${seat.numberSeat}?`)) {
       this.ticketsService.sellTicket(seat);
       this.seatsSubject.next(this.ticketsService.getAllSeats());
     }

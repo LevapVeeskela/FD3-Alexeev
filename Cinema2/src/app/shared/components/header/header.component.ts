@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { TicketsService } from 'src/app/shared/services/tickets.service';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.seatsSubject.subscribe({ next: (seats:any[][]) => {
+    this.seatsSubject.pipe(
+      debounceTime(2000),
+    ).subscribe({ next: (seats:any[][]) => {
       let count = this.getCountFreeSeats();
       alert(count > 0 ? `Dear visitors ${this.getCountFreeSeats()} tickets left!` : 'All tickets are sold out!');
     }});
