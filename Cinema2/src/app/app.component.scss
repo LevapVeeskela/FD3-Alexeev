@@ -1,0 +1,39 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100);
+
+.background {
+  width: 100%;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/662025/abstract.jpg');
+  background-size: cover;
+}
+
+@keyframes draw {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+
+@keyframes draw-bottom {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
