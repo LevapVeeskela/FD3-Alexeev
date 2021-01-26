@@ -10,15 +10,15 @@ import { SeatModel } from '../../models/Seat.model';
 export class HallComponent implements OnInit {
   title = 'Veeskela Cinema Project';
   seats: any[] = [];
-  
+
   constructor(private ticketsService: TicketsService) { }
 
   ngOnInit(): void {
     this.seats = this.ticketsService.getAllSeats().reverse();
   }
 
-  sellTicket(seat: SeatModel){
-    if(confirm(`Do you will sell it seat : row-${seat.row} number-${seat.numberSeat}?`)){
+  sellTicket(seat: SeatModel) {
+    if (confirm(`Do you will sell it seat : row-${seat.row} number-${seat.numberSeat + 1}?`)) {
       this.ticketsService.sellTicket(seat);
     }
   }
@@ -31,10 +31,10 @@ export class HallComponent implements OnInit {
       'background-image': `url(${url})`,
       'width': `130px`,
       'height': `130px`,
-    } 
+    }
   }
 
-  getTitle(row: number, numberSeat: number): string{
+  getTitle(row: number, numberSeat: number): string {
     return `Row ${row + 1}\nSeat ${numberSeat + 1}`
   }
 }

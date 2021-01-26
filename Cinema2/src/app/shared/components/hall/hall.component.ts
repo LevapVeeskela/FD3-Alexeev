@@ -1,34 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable, of, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { TicketsService } from 'src/app/shared/services/tickets.service';
 import { SeatModel } from '../../models/Seat.model';
 
 @Component({
   selector: 'app-hall',
   templateUrl: 'hall.component.html',
-  styleUrls: ['hall.component.scss']
+  styleUrls: ['hall.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HallComponent implements OnInit {
   title = 'Veeskela Cinema Project';
-  seats: any[] = [];
-  seatsSubject: Subject<any[][]>;
-  constructor(private ticketsService: TicketsService) { 
-    this.seatsSubject = ticketsService.getSeatsSubject();
+  seats: Observable<any[][]>;
+
+  constructor(private ticketsService: TicketsService) {
+    this.seats = this.ticketsService.getSeatsObservable().pipe(map((data: any[][]) => {
+      return data.reverse();
+    }))
   }
 
   ngOnInit(): void {
-    this.ticketsService.getSeatsObservable().subscribe({
-      next: (seats: any[][]) => {
-        this.seats = seats.reverse();
-      },
-      error: error => console.error(error),
-    });
+
   }
 
   sellTicket(seat: SeatModel) {
-    if (confirm(`Do you will sell it seat : row-${seat.row + 1} number-${seat.numberSeat}?`)) {
+    if (confirm(`Do you will sell it seat : row-${seat.row + 1} number-${seat.numberSeat + 1}?`)) {
       this.ticketsService.sellTicket(seat);
-      this.seatsSubject.next(this.ticketsService.getAllSeats());
     }
   }
 

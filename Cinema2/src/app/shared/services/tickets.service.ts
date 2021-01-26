@@ -2,17 +2,19 @@ import { Injectable } from '@angular/core';
 import { ILowSeat } from '../interfaces/ILowSeat';
 import { SeatModel } from '../models/Seat.model';
 import { TicketConstants } from '../constants/constants';
-import { Observable } from "rxjs";
-import { Subject } from 'rxjs';
+import { Observable, Subject } from "rxjs";
+import { } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketsService {
-  private allSeats: any[][] = [];
+  private seats: any[][] = [];
   private allSeatsSubject: Subject<any[][]> = new Subject<any[][]>();
+
   constructor() {
-    this.allSeats = this.generateSpectatorSeats(TicketConstants.COUNT_ROW, TicketConstants.COUNT_SEATS_IN_ROW);
+    this.seats = this.generateSpectatorSeats(TicketConstants.COUNT_ROW, TicketConstants.COUNT_SEATS_IN_ROW);
   }
 
   private generateSpectatorSeats(countRow: number, countSeatsInRow: number): any[][] {
@@ -33,7 +35,7 @@ export class TicketsService {
     }
     if (countTickets) {
       let tickets: ILowSeat[] = [];
-      let allFreeSeats = this.allSeats.flat().filter((v: SeatModel) => v.isFree);
+      let allFreeSeats = this.seats.flat().filter((v: SeatModel) => v.isFree);
       for (let i: number = 0; i < allFreeSeats.length; i++) {
         allFreeSeats[i].isFree = false;
         tickets.push(allFreeSeats[i]);
@@ -47,15 +49,15 @@ export class TicketsService {
   }
 
   getCountFreeSeats(): number {
-    return this.allSeats.flat().filter((v: SeatModel) => v.isFree).length;
+    return this.seats.flat().filter((v: SeatModel) => v.isFree).length;
   }
 
   getCountNotFreeSeats(): number {
-    return this.allSeats.flat().filter((v: SeatModel) => !v.isFree).length;
+    return this.seats.flat().filter((v: SeatModel) => !v.isFree).length;
   }
 
   getAllSeats(): any[][] {
-    return this.allSeats;
+    return this.seats;
   }
 
   getSeatsSubject(): Subject<any[][]> {
@@ -64,7 +66,7 @@ export class TicketsService {
 
   getSeatsObservable(): Observable<any[][]> {
     return new Observable<any[][]>(observer => {
-      observer.next(this.allSeats);
+      observer.next(this.seats);
     });  // it is same that of(this.allSeats) or from([this.allSeats])
   }
 }
